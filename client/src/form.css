@@ -1,0 +1,26 @@
+.dropdown-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 40px;
+  width: 500px;
+}
+
+.title-input {
+  width: 100%;
+  padding: 0.3rem;
+  font-size: 1.5rem;
+  height: 30px;
+}
+
+select {
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.description-input {
+  width: 100%;
+  height: 25ch;
+  overflow: scroll;
+  text-wrap: wrap;
+}
