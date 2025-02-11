@@ -7,8 +7,8 @@ const AppDataSource = new DataSource({
   type: 'postgres',
   url: process.env.DATABASE_URL,
   port: Number(process.env.DB_PORT),
-  entities: ['src/**/*.entity{.ts,.js}'],
-  migrations: ['src/migrations/*.ts'],
+  entities: ['src/**/*.entity{.js}'],
+  migrations: ['src/migrations/*.js'],
   synchronize: false, // Use migrations instead in prod
   logging: true,
   ssl:
