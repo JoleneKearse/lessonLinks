@@ -24,3 +24,16 @@ select {
   overflow: scroll;
   text-wrap: wrap;
 }
+
+  height: 20ch;
+  overflow: scroll;
+  text-wrap: wrap;
+}
+
+input[type='email'] {
+  width: 100%;
+  padding: 0.3rem;
+  font-size: 1.5rem;
+  height: 30px;
+}
+
