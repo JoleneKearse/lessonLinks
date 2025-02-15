@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage';
 import RequestPage from './pages/RequestPage';
 import BrowseResourcesPage from './pages/BrowseResourcesPage';
 import BrowseRequestsPage from './pages/BrowseRequestsPage';
+import SubmitPage from './pages/SubmitPage';
 
 function App() {
   const router = createBrowserRouter([
@@ -22,6 +23,10 @@ function App() {
     {
       path: '/browse-requests',
       element: <BrowseRequestsPage />,
+    },
+    {
+      path: '/submit',
+      element: <SubmitPage />,
     },
   ]);
 
