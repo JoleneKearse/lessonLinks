@@ -19,7 +19,7 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "typeorm": "tsx -r dotenv/config ./node_modules/typeorm/cli.js --dataSource ./src/utils/config/data-source.ts",
+    "typeorm": "tsx -r dotenv/config ./node_modules/typeorm/cli.js --dataSource ./src/utils/config/data-source.js",
     "migration:generate": "typeorm migration:generate -n"
   },
   "dependencies": {
@@ -28,6 +28,8 @@
     "@nestjs/core": "^11.0.1",
     "@nestjs/platform-express": "^11.0.1",
     "@nestjs/typeorm": "^11.0.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
     "dotenv": "^16.4.7",
     "pg": "^8.13.1",
     "reflect-metadata": "^0.2.2",
