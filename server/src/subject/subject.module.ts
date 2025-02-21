@@ -4,6 +4,6 @@ import { SubjectService } from './subject.service.js';
 
 @Module({
   controllers: [SubjectController],
-  providers: [SubjectService]
+  providers: [SubjectService],
 })
 export class SubjectModule {}
