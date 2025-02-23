@@ -20,7 +20,8 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "typeorm": "tsx -r dotenv/config ./node_modules/typeorm/cli.js --dataSource ./src/utils/config/data-source.ts",
-    "migration:generate": "typeorm migration:generate -n"
+    "typeorm:generate-migration": "npm run typeorm migration:generate -n",
+    "typeorm:run-migrations": "npm run typeorm migration:run"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
