@@ -4,9 +4,6 @@ import { UserTypeEntity } from "../user-type/user-type.entity";
 
 @Entity('user')
 export class UserEntity extends BaseEntity {
-  @Column({ type: 'uuid', unique: true })
-  userId: string;
-
   @Column({ type: 'varchar', unique: true, nullable: true})
   email: string | null; // not all providers provide email
 
