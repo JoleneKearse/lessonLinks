@@ -13,6 +13,6 @@ export class UserTypeEntity extends BaseEntity {
   @JoinColumn({ name: 'user_id' })
   user: Promise<UserEntity>;
 
-  @Column({ type: 'varchar', enum: UserTypeEnum, nullable: false })
-  type: UserTypeEnum;
+  @Column({ type: 'varchar', nullable: false })
+  type: string;
 }
