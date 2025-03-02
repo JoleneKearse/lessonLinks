@@ -9,7 +9,7 @@ export enum UserTypeEnum {
 
 @Entity('user_type')
 export class UserTypeEntity extends BaseEntity {
-  @ManyToOne(() => UserEntity, (user) => user.id, { nullable: false, onDelete: 'CASCADE' })
+  @ManyToOne(() => UserEntity, { nullable: false, onDelete: 'CASCADE' })
   @JoinColumn({ name: 'user_id' })
   user: Promise<UserEntity>;
 
