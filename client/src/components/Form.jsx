@@ -8,6 +8,8 @@ function Form({ formTitle, isARequest }) {
   const [resourceTypeSelected, setResourceTypeSelected] = useState('none');
   const [formatSelected, setFormatSelected] = useState('none');
   const [description, setDescription] = useState('');
+  const [link, setLink] = useState('');
+  const [price, setPrice] = useState('');
 
   function handlesDescriptionInput(event) {
     if (event.target.value.length <= 600) {
