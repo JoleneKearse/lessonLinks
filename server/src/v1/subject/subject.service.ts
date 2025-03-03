@@ -25,6 +25,7 @@ export class SubjectService {
 
   async create(newSubjectDTO: NewSubjectDTO): Promise<SubjectEntity> {
     try {
+      newSubjectDTO.name = newSubjectDTO.name.toLowerCase();
       const subject = this.subjectRepository.create(newSubjectDTO);
       return await this.subjectRepository.save(subject);
     } catch (error) {
