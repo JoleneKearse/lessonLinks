@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Dropdown from './Dropdown';
 import { subjects, grades, resourceTypes, formats } from '../CONSTANTS';
 
-function Form({ formTitle, isARequest, children }) {
+function Form({ formTitle, isARequest }) {
   const [subjectSelected, setSubjectSelected] = useState('none');
   const [gradeSelected, setGradeSelected] = useState('none');
   const [resourceTypeSelected, setResourceTypeSelected] = useState('none');
@@ -49,7 +49,30 @@ function Form({ formTitle, isARequest, children }) {
           setSelected={setFormatSelected}
         />
       </div>
-      <div className="link-and-price">{children}</div>
+      <div className="link-and-price">
+        {!isARequest && (
+          <>
+            <label>
+              {' '}
+              Link to Resource
+              <input
+                type="link"
+                className="link-input"
+                placeholder="Link to resource"
+              ></input>
+            </label>
+            <label>
+              {' '}
+              Price
+              <input
+                type="number"
+                className="price-input"
+                placeholder="Price"
+              ></input>
+            </label>
+          </>
+        )}
+      </div>
 
       <h3> Describe your request</h3>
       <textarea
