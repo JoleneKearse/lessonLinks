@@ -14,7 +14,10 @@ export class NewSubSubjectDTO {
   subjectId: string;
 }
 
-export class SubSubjectDTO extends IntersectionType(BaseDTO, NewSubSubjectDTO) {}
+export class SubSubjectDTO extends IntersectionType(
+  BaseDTO,
+  NewSubSubjectDTO,
+) {}
 
 @Entity('sub_subject')
 @Unique(['name'])
@@ -28,4 +31,7 @@ export class SubSubjectEntity extends BaseEntity {
   })
   @JoinColumn({ name: 'subject_id' })
   subject: Promise<SubjectEntity>;
+
+  @Column({ name: 'subject_id', type: 'uuid' })
+  subjectId: string;
 }
