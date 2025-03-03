@@ -4,6 +4,8 @@
 - ...see more show and hide description
 - home screen / global css
 - Fix form architecture ✅
-- State variables for all form inputs and convert to json on submit
+- State variables for all form inputs and convert to json on submit ✅
+- Impose character limit on description
+- Impose grade levels limit on grade levels
 - Add form validation and error handling
-- create search functionality
+- create search functionality ?

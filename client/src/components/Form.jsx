@@ -32,14 +32,6 @@ function Form({ formTitle, isARequest }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log('Form submitted');
-    console.log({ subjectSelected });
-    console.log({ gradesSelected });
-    console.log({ resourceTypeSelected });
-    console.log({ formatSelected });
-    console.log({ description });
-    console.log({ link });
-    console.log({ price });
 
     if (isARequest) {
       const newRequest = {
@@ -88,22 +80,6 @@ function Form({ formTitle, isARequest }) {
           setSelected={setSubjectSelected}
         />
 
-        <fieldset>
-          <legend>Select up to 4 Grade Levels</legend>
-          {grades.map(option => (
-            <label key={option}>
-              <input
-                key={option}
-                type="checkbox"
-                label={option}
-                value={option}
-                onChange={handleCheckboxChange}
-              />
-              {option}
-            </label>
-          ))}
-        </fieldset>
-
         <Dropdown
           options={resourceTypes}
           label="Resource Type"
@@ -117,6 +93,21 @@ function Form({ formTitle, isARequest }) {
           setSelected={setFormatSelected}
         />
       </div>
+      <fieldset>
+        <legend>Select up to 4 Grade Levels</legend>
+        {grades.map(option => (
+          <label key={option}>
+            <input
+              key={option}
+              type="checkbox"
+              label={option}
+              value={option}
+              onChange={handleCheckboxChange}
+            />
+            {option}
+          </label>
+        ))}
+      </fieldset>
       <div className="link-and-price">
         {!isARequest && (
           <>

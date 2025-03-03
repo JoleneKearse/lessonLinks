@@ -52,9 +52,8 @@ input[type='email'] {
 
 fieldset {
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  height: 100px;
-  overflow-y: scroll;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 20px;
 }
 
 fieldset > legend {
