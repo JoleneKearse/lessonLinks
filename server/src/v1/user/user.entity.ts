@@ -1,6 +1,6 @@
 import { Entity, Column, OneToMany } from "typeorm";
-import { BaseEntity } from "../../utils/base.entity";
-import { UserTypeEntity } from "../user-type/user-type.entity";
+import { BaseEntity } from "../../utils/base.entity.js";
+import { UserTypeEntity } from "../user-type/user-type.entity.js";
 import { IsInt, Max, Min } from 'class-validator';
 
 @Entity('user')
