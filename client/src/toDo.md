@@ -1,0 +1,7 @@
+- CSS for resource cards
+- CSS for form
+- CSS for checkboxes
+- ...see more show and hide description
+- home screen / global css
+- Fix form architecture
+- create search functionality
