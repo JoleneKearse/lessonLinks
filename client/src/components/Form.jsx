@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import Dropdown from './Dropdown';
 import { subjects, grades, resourceTypes, formats } from '../CONSTANTS';
 
@@ -8,11 +9,25 @@ function Form({ formTitle, isARequest }) {
   const [resourceTypeSelected, setResourceTypeSelected] = useState('none');
   const [formatSelected, setFormatSelected] = useState('none');
   const [description, setDescription] = useState('');
+  const [link, setLink] = useState('');
+  const [price, setPrice] = useState('');
 
   function handlesDescriptionInput(event) {
     if (event.target.value.length <= 600) {
       setDescription(event.target.value);
     }
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    console.log('Form submitted');
+    console.log({ subjectSelected });
+    console.log({ gradeSelected });
+    console.log({ resourceTypeSelected });
+    console.log({ formatSelected });
+    console.log({ description });
+    console.log({ link });
+    console.log({ price });
   }
 
   return (
@@ -29,12 +44,21 @@ function Form({ formTitle, isARequest }) {
           setSelected={setSubjectSelected}
         />
 
-        {grades.map(option => (
-          <label key={option}>
-            <input key={option} type="checkbox" label={option} value={option} />
-            {option}
-          </label>
-        ))}
+        <fieldset>
+          <legend>Select up to 4 Grade Levels</legend>
+          {grades.map(option => (
+            <label key={option}>
+              <input
+                key={option}
+                type="checkbox"
+                label={option}
+                value={option === gradeSelected}
+                onChange={() => setGradeSelected(option)}
+              />
+              {option}
+            </label>
+          ))}
+        </fieldset>
 
         <Dropdown
           options={resourceTypes}
@@ -59,6 +83,8 @@ function Form({ formTitle, isARequest }) {
                 type="link"
                 className="link-input"
                 placeholder="Link to resource"
+                value={link}
+                onChange={event => setLink(event.target.value)}
               ></input>
             </label>
             <label>
@@ -68,6 +94,8 @@ function Form({ formTitle, isARequest }) {
                 type="number"
                 className="price-input"
                 placeholder="Price"
+                value={price}
+                onChange={event => setPrice(event.target.value)}
               ></input>
             </label>
           </>
@@ -78,6 +106,7 @@ function Form({ formTitle, isARequest }) {
       <textarea
         className="description-input"
         onChange={handlesDescriptionInput}
+        value={description}
       >
         {' '}
       </textarea>
@@ -89,9 +118,15 @@ function Form({ formTitle, isARequest }) {
       )}
       <h3>Provide your email to get updates on your request.</h3>
       <input type="email" placeholder="Email"></input>
-      <button type="submit">Submit</button>
+      <button type="submit" onClick={handleSubmit}>
+        Submit
+      </button>
     </form>
   );
 }
+Form.propTypes = {
+  formTitle: PropTypes.string.isRequired,
+  isARequest: PropTypes.bool.isRequired,
+};
 
 export default Form;

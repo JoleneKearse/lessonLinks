@@ -43,13 +43,26 @@ input[type='email'] {
 .price-input {
   display: grid;
   width: 100%;
-  
 }
 
 .link-input {
   display: grid;
   width: 100%;
-  
 }
 
+fieldset {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  height: 100px;
+  overflow-y: scroll;
+}
 
+fieldset > legend {
+  grid-column: span 3;
+}
+
+fieldset > input[type='checkbox'] {
+  display: flex;
+  justify-content: start;
+  flex-grow: 1;
+}
