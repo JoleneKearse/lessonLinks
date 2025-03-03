@@ -4,13 +4,15 @@ import Dropdown from './Dropdown';
 import { subjects, grades, resourceTypes, formats } from '../CONSTANTS';
 
 function Form({ formTitle, isARequest }) {
+  const [title, setTitle] = useState('');
   const [subjectSelected, setSubjectSelected] = useState('none');
-  const [gradeSelected, setGradeSelected] = useState('none');
+  const [gradesSelected, setGradesSelected] = useState([]);
   const [resourceTypeSelected, setResourceTypeSelected] = useState('none');
   const [formatSelected, setFormatSelected] = useState('none');
   const [description, setDescription] = useState('');
   const [link, setLink] = useState('');
   const [price, setPrice] = useState('');
+  const [email, setEmail] = useState('');
 
   function handlesDescriptionInput(event) {
     if (event.target.value.length <= 600) {
@@ -18,23 +20,65 @@ function Form({ formTitle, isARequest }) {
     }
   }
 
+  function handleCheckboxChange(event) {
+    if (event.target.checked) {
+      setGradesSelected([...gradesSelected, event.target.value]);
+    } else {
+      setGradesSelected(
+        gradesSelected.filter(grade => grade !== event.target.value)
+      );
+    }
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
     console.log('Form submitted');
     console.log({ subjectSelected });
-    console.log({ gradeSelected });
+    console.log({ gradesSelected });
     console.log({ resourceTypeSelected });
     console.log({ formatSelected });
     console.log({ description });
     console.log({ link });
     console.log({ price });
+
+    if (isARequest) {
+      const newRequest = {
+        title: title,
+        subject: subjectSelected,
+        grades: gradesSelected,
+        resourceType: resourceTypeSelected,
+        format: formatSelected,
+        description: description,
+        email: email,
+      };
+      console.log(newRequest);
+      console.log(JSON.stringify(newRequest));
+    } else {
+      const newResource = {
+        title: title,
+        subject: subjectSelected,
+        grades: gradesSelected,
+        resourceType: resourceTypeSelected,
+        format: formatSelected,
+        description: description,
+        link: link,
+        price: price,
+        email: email,
+      };
+      console.log(newResource);
+      console.log(JSON.stringify(newResource));
+    }
   }
 
   return (
     <form>
       <h1>{formTitle}</h1>
       <h3>Title your request</h3>
-      <input className="title-input"></input>
+      <input
+        className="title-input"
+        value={title}
+        onChange={() => setTitle(event.target.value)}
+      ></input>
       <h3> Select an option for each dropdown. </h3>
       <div className="dropdown-container">
         <Dropdown
@@ -52,8 +96,8 @@ function Form({ formTitle, isARequest }) {
                 key={option}
                 type="checkbox"
                 label={option}
-                value={option === gradeSelected}
-                onChange={() => setGradeSelected(option)}
+                value={option}
+                onChange={handleCheckboxChange}
               />
               {option}
             </label>
@@ -111,13 +155,22 @@ function Form({ formTitle, isARequest }) {
         {' '}
       </textarea>
       <div> {`${description.length}/600`}</div>
-      {!isARequest && (
+      {/* {!isARequest && (
         <label>
           Link to your Resource<input type="link" placeholder="Link"></input>
         </label>
+      )} */}
+      {isARequest ? (
+        <h3>Provide your email to get updates on your request.</h3>
+      ) : (
+        <h3>Provide your email to get updates on your resource.</h3>
       )}
-      <h3>Provide your email to get updates on your request.</h3>
-      <input type="email" placeholder="Email"></input>
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={() => setEmail(event.target.value)}
+      ></input>
       <button type="submit" onClick={handleSubmit}>
         Submit
       </button>

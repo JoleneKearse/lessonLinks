@@ -3,5 +3,7 @@
 - CSS for checkboxes
 - ...see more show and hide description
 - home screen / global css
-- Fix form architecture
+- Fix form architecture ✅
+- State variables for all form inputs and convert to json on submit
+- Add form validation and error handling
 - create search functionality
