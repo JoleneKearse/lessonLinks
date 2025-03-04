@@ -1,8 +1,9 @@
-import { Entity, Column, Unique, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, Unique, ManyToOne, JoinColumn, OneToMany } from 'typeorm';
 import { BaseDTO, BaseEntity } from '../../utils/base.entity.js';
 import { SubjectEntity } from '../subject/subject.entity.js';
 import { IsNotEmpty, IsString, IsUUID } from 'class-validator';
 import { IntersectionType } from '@nestjs/mapped-types';
+import { ResourceEntity } from '../resource/resource.entity.js';
 
 export class NewSubSubjectDTO {
   @IsNotEmpty()
