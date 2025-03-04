@@ -15,6 +15,12 @@ export class ResourceEntity extends BaseEntity {
   @Column({ type: 'varchar', nullable: false})
   description: string;
 
+  @Column({ type: 'varchar', length: 10, nullable: true })
+  price: string;  //  Could be free or include country code and currency symbol
+
+  @Column({ type: 'varchar', nullable: false })
+  link: string;
+
   @ManyToOne(() => SubjectEntity, (subject) => subject.resources, { onDelete: 'RESTRICT', nullable: false })
   @JoinColumn({ name: 'subject_id' })
   subject: Promise<SubjectEntity>;
