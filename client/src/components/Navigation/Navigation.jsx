@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router';
 import './Navigation.css';
+import logoImage from '../../assets/LL_logo.png'; // Import the image
 
 function Navigation() {
   const location = useLocation();
@@ -8,7 +9,7 @@ function Navigation() {
     <header>
         <nav>
           <Link to="/" className="logo">
-            <img src="/src/assets/LL_logo.png" alt="LessonLinks Logo" className="logo-img" /> 
+            <img src={logoImage} alt="LessonLinks Logo" className="logo-img" /> 
             LessonLinks
           </Link>
           <ul className="nav-links">
