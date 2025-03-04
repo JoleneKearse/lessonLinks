@@ -8,15 +8,20 @@
 .hero {
   background: var(--light);
   color: var(--dark);
-  padding: 100px 0 50px 0;
+  height: 100vh;
+  min-height: 700px;
+  max-height: 800px;
   position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: center;
 }
 
 .hero-content {
   display: flex;
   align-items: center;
   padding: 80px 0;
+  margin-top: 40px;
   width: 100%;
 }
 
@@ -52,7 +57,7 @@
 /* Request Feature Section */
 .request-feature {
   width: 100%;
-  padding: 80px 0;
+  padding: 60px 0 40px 0;
   margin-top: 0;
   position: relative;
   z-index: 10;
@@ -63,7 +68,7 @@
 
 .section-title {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 50px;
 }
 
 .section-title h2 {
@@ -83,7 +88,9 @@
 .request-cards-container {
   position: relative;
   width: 100%;
+  padding: 0 0 40px 0;
   margin-top: 40px;
+  overflow: visible;
 }
 
 .request-cards {
@@ -91,10 +98,9 @@
   overflow-x: scroll !important;
   scrollbar-width: thin !important;
   gap: 30px;
-  padding: 10px 0 30px 0;
+  padding: 20px 0 50px 0;
   -webkit-overflow-scrolling: touch;
-  
-  overflow-y: hidden;
+  overflow-y: visible;
   margin-bottom: 5px;
 }
 
@@ -131,7 +137,9 @@
 }
 
 .request-card {
-  border: 1px solid var(--dark-grey);
+  margin: 10px;
+  box-shadow: 0 10px 10px 5px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   border-radius: 10px;
   overflow: hidden;
   transition: transform 0.3s ease;
@@ -140,6 +148,7 @@
 }
 
 .request-card:hover {
+  box-shadow: 0 15px 15px 8px rgba(0, 0, 0, 0.3);
   transform: translateY(-5px);
 }
 
@@ -152,7 +161,7 @@
 }
 
 .request-card-body {
-  padding: 20px;
+  padding: 20px 30px;
 }
 
 .request-card h3 {
@@ -185,22 +194,26 @@
 }
 
 .see-all-card {
+  margin: 10px; 
+  box-shadow: 0 10px 10px 5px rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px dashed var(--dark-grey); /* Base border */
   border-radius: 10px;
   padding: 30px;
-  transition: transform 0.3s ease;
   text-align: center;
   text-decoration: none;
   color: var(--dark);
+  /* Combined the transitions and added background-color with longer duration */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 1.5s ease;
 }
 
 .see-all-card:hover {
   transform: translateY(-5px);
-  background-color: yellow;
+  box-shadow: 0 15px 15px 8px rgba(0, 0, 0, 0.3);
+  /* Changed from bright yellow to a slightly softer yellow */
+  background-color: #ffeb3b;
 }
 
 .see-all-card .fas {
@@ -230,11 +243,53 @@
   padding: 0;
 }
 
+/* Slider navigation arrows - keep these */
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background-color: var(--light);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100;
+  font-size: 1.2rem;
+  box-shadow: 0 10px 40px 5px rgba(0, 0, 0, 0.10);
+  transition: all 0.3s ease;
+  opacity: 1;
+}
+
+.slider-arrow:hover {
+  transform: translateY(-50%) scale(1.2);
+}
+
+.slider-arrow.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.slider-prev {
+  left: -20px;
+}
+
+.slider-next {
+  right: -20px;
+}
+
 /* How It Works Section */
 .how-it-works {
   padding: 80px 0;
-  background-color: var(--light);
+  background-color: var(--dark);
   border-bottom: 1px solid var(--dark-grey);
+}
+
+.how-it-works .section-title h2, .how-it-works .section-title p {
+  color: var(--pure-white);
 }
 
 .process-steps {
@@ -254,8 +309,7 @@
 }
 
 .step-content {
-  background-color: var(--gray-bg);
-  border: 1px solid var(--dark-grey);
+  background-color: var(--light);
   padding: 30px 20px;
   border-radius: 10px;
   height: 100%;
@@ -302,48 +356,154 @@
   z-index: 0;
 }
 
-/* Comparison Section */
-.comparison {
+/* Benefits Section */
+.benefits-comparison {
   padding: 80px 0;
+  background-color: var(--light);
 }
 
-.comparison-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 40px;
-  box-shadow: var(--shadow);
-  border-radius: 10px;
+.benefits-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.benefits-card {
+  flex: 1;
+  min-width: 300px;
+  max-width: 550px;
+  background: var(--light);
+  border-radius: 12px;
+  margin: 10px; 
+  box-shadow: 0 10px 10px 5px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   overflow: hidden;
+  position: relative;
 }
 
-.comparison-table th,
-.comparison-table td {
-  padding: 15px 20px;
-  text-align: left;
-  border-bottom: 1px solid #eee;
+.benefits-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 15px 8px rgba(0, 0, 0, 0.3);
 }
 
-.comparison-table th {
+.card-header {
+  padding: 30px;
+  position: relative;
+}
+
+.card-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+}
+
+.teachers-card .card-header::before {
+  background-color: var(--highlight);
+}
+
+.creators-card .card-header::before {
   background-color: var(--bright-bg);
-  color: var(--pure-white);
 }
 
-.comparison-table tr:nth-child(even) {
-  background-color: var(--gray-bg);
+.card-header h3 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  color: var(--dark);
+  display: flex;
+  align-items: center;
 }
 
-.comparison-table .feature-highlight {
-  background-color: var(--gray-bg);
+.card-header h3 i {
+  margin-right: 15px;
+  font-size: 1.6rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.teachers-card .card-header h3 i {
+  color: var(--highlight);
+  background-color: rgba(255, 94, 98, 0.1);
+}
+
+.creators-card .card-header h3 i {
+  color: var(--bright-bg);
+  background-color: rgba(99, 85, 208, 0.1);
+}
+
+.card-header p {
+  font-size: 1.05rem;
+  color: var(dark);
+}
+
+.benefits-list {
+  padding: 0 30px 30px;
+  list-style: none;
+}
+
+.benefit-item {
+  padding: 15px 0;
+  display: flex;
+  align-items: flex-start;
+  border-bottom: 1px solid var(--pale-grey);
+}
+
+.benefit-item:last-child {
+  border-bottom: none;
 }
 
 .check-icon {
-  color: var(--bright-bg);
+  margin-right: 15px;
   font-size: 1.2rem;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.x-icon {
+.teachers-card .check-icon i {
+  color: var(--highlight);
+}
+
+.creators-card .check-icon i {
   color: var(--bright-bg);
-  font-size: 1.2rem;
+}
+
+.teachers-card .check-icon {
+  color: var(--highlight);
+  background-color: rgba(255, 94, 98, 0.1);
+}
+
+.creators-card .check-icon {
+  color: var(--bright-bg);
+  background-color: rgba(99, 85, 208, 0.1);
+}
+
+.benefit-text {
+  font-size: 1.05rem;
+  color: var(--dark);
+}
+
+@media (max-width: 768px) {
+  .benefits-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .benefits-card {
+    width: 100%;
+  }
 }
 
 /* Floating Action Button */
@@ -357,7 +517,7 @@
   border-radius: 50px;
   text-decoration: none;
   font-weight: bold;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
   z-index: 1000;
   transition: all 0.3s ease;
 }
@@ -369,44 +529,6 @@
 
 .floating-request-btn i {
   margin-right: 8px;
-}
-
-/* Slider navigation arrows - keep these */
-.slider-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 50px;
-  height: 50px;
-  background-color: var(--light);
-  color: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 100;
-  font-size: 1.2rem;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-  opacity: 1;
-}
-
-.slider-arrow:hover {
-  transform: translateY(-50%) scale(1.2);
-}
-
-.slider-arrow.hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.slider-prev {
-  left: -20px;
-}
-
-.slider-next {
-  right: -20px;
 }
 
 /* Responsive Styles */

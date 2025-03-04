@@ -12,6 +12,7 @@ header {
 
 nav {
   background-color: var(--bright-bg);
+  opacity: 0.98;
   display: flex;
   justify-content: space-between;
   align-items: center;
