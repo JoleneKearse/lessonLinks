@@ -27,6 +27,10 @@ select {
   padding: 0.5rem;
 }
 
+.error {
+  color: rgb(240, 145, 145);
+}
+
 .description-input {
   width: 100%;
   height: 25ch;

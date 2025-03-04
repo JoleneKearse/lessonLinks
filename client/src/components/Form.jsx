@@ -13,6 +13,7 @@ function Form({ formTitle, isARequest }) {
   const [link, setLink] = useState('');
   const [price, setPrice] = useState('');
   const [email, setEmail] = useState('');
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   function handleDescriptionInput(event) {
     const input = event.target.value;
@@ -35,6 +36,7 @@ function Form({ formTitle, isARequest }) {
 
   function handleSubmit(event) {
     event.preventDefault();
+    setIsSubmitted(true);
 
     if (isARequest) {
       const newRequest = {
@@ -85,6 +87,7 @@ function Form({ formTitle, isARequest }) {
             label="Subject"
             selected={subjectSelected}
             setSelected={setSubjectSelected}
+            isSubmitted={isSubmitted}
           />
 
           <Dropdown
@@ -92,12 +95,14 @@ function Form({ formTitle, isARequest }) {
             label="Resource Type"
             selected={resourceTypeSelected}
             setSelected={setResourceTypeSelected}
+            isSubmitted={isSubmitted}
           />
           <Dropdown
             options={formats}
             label="Format"
             selected={formatSelected}
             setSelected={setFormatSelected}
+            isSubmitted={isSubmitted}
           />
         </div>
       </label>
