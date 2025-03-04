@@ -68,34 +68,39 @@ function Form({ formTitle, isARequest }) {
   return (
     <form>
       <h1>{formTitle}</h1>
-      <h3>Title your request</h3>
-      <input
-        className="title-input"
-        value={title}
-        onChange={() => setTitle(event.target.value)}
-      ></input>
-      <h3> Select an option for each dropdown. </h3>
-      <div className="dropdown-container">
-        <Dropdown
-          options={subjects}
-          label="Subject"
-          selected={subjectSelected}
-          setSelected={setSubjectSelected}
-        />
+      <label>
+        Title your request
+        <input
+          className="title-input"
+          value={title}
+          onChange={() => setTitle(event.target.value)}
+        ></input>
+      </label>
+      <label className="dropdown-header">
+        {' '}
+        Select an option for each dropdown.
+        <div className="dropdown-container">
+          <Dropdown
+            options={subjects}
+            label="Subject"
+            selected={subjectSelected}
+            setSelected={setSubjectSelected}
+          />
 
-        <Dropdown
-          options={resourceTypes}
-          label="Resource Type"
-          selected={resourceTypeSelected}
-          setSelected={setResourceTypeSelected}
-        />
-        <Dropdown
-          options={formats}
-          label="Format"
-          selected={formatSelected}
-          setSelected={setFormatSelected}
-        />
-      </div>
+          <Dropdown
+            options={resourceTypes}
+            label="Resource Type"
+            selected={resourceTypeSelected}
+            setSelected={setResourceTypeSelected}
+          />
+          <Dropdown
+            options={formats}
+            label="Format"
+            selected={formatSelected}
+            setSelected={setFormatSelected}
+          />
+        </div>
+      </label>
       <fieldset>
         <legend>Select up to 4 Grade Levels</legend>
         {grades.map(option => (
@@ -140,34 +145,40 @@ function Form({ formTitle, isARequest }) {
         )}
       </div>
 
-      <h3> Describe your request</h3>
-      <textarea
-        className="description-input"
-        onInput={handleDescriptionInput}
-        value={description}
-      >
+      <label>
         {' '}
-      </textarea>
-      <div> {`${description.length}/600`}</div>
-      {/* {!isARequest && (
-        <label>
-      <div> {`${description.length}/1500`}</div>
-      {!isARequest && (
-        <label className="link-input">
-          Link to your Resource<input type="link" placeholder="Link"></input>
-        </label>
-      )} */}
+        Describe your request
+        <textarea
+          className="description-input"
+          onInput={handleDescriptionInput}
+          value={description}
+        >
+          {' '}
+        </textarea>
+        <div> {`${description.length}/1500`}</div>
+      </label>
       {isARequest ? (
-        <h3>Provide your email to get updates on your request.</h3>
+        <label>
+          Provide your email to get updates on your request.
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={() => setEmail(event.target.value)}
+          ></input>
+        </label>
       ) : (
-        <h3>Provide your email to get updates on your resource.</h3>
+        <label>
+          Provide your email to get updates on your resource.
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={() => setEmail(event.target.value)}
+          ></input>
+        </label>
       )}
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={() => setEmail(event.target.value)}
-      ></input>
+
       <button type="submit" onClick={handleSubmit}>
         Submit
       </button>

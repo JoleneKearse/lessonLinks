@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 function Dropdown({
   options,
   label,
-  multiple,
   selected,
   setSelected,
   status,
@@ -30,7 +29,6 @@ function Dropdown({
           id={`${label}_input`}
           value={selected}
           onChange={event => handleInput(event)}
-          multiple={multiple | false}
         >
           <option value="none" disabled={initialTermIsDisabled}>
             {`Select ${label}`}
