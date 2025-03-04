@@ -7,12 +7,21 @@ function Form({ formTitle, isARequest }) {
   const [title, setTitle] = useState('');
   const [subjectSelected, setSubjectSelected] = useState('none');
   const [gradesSelected, setGradesSelected] = useState([]);
+  const [gradesDisabled, setGradesDisabled] = useState(false);
   const [resourceTypeSelected, setResourceTypeSelected] = useState('none');
   const [formatSelected, setFormatSelected] = useState('none');
   const [description, setDescription] = useState('');
   const [link, setLink] = useState('');
   const [price, setPrice] = useState('');
   const [email, setEmail] = useState('');
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  // Status Variables (dropdown statuses are handled in dropdown component)
+  const [titleStatus, setTitleStatus] = useState('normal');
+  const [gradesStatus, setGradesStatus] = useState('normal');
+  const [linkStatus, setLinkStatus] = useState('normal');
+  const [priceStatus, setPriceStatus] = useState('normal');
+  const [emailStatus, setEmailStatus] = useState('normal');
 
   function handleDescriptionInput(event) {
     const input = event.target.value;
@@ -24,18 +33,40 @@ function Form({ formTitle, isARequest }) {
   }
 
   function handleCheckboxChange(event) {
-    if (event.target.checked) {
+    if (event.target.checked && gradesSelected.length < 4) {
       setGradesSelected([...gradesSelected, event.target.value]);
+      setGradesStatus('normal');
+      if (gradesSelected.length === 3) {
+        setGradesDisabled(true);
+      }
+    } else if (event.target.checked) {
+      setGradesDisabled(true);
     } else {
       setGradesSelected(
         gradesSelected.filter(grade => grade !== event.target.value)
       );
+      setGradesDisabled(false);
     }
   }
 
   function handleSubmit(event) {
     event.preventDefault();
+    setIsSubmitted(true);
+    if (gradesSelected.length === 0) {
+      setGradesStatus('error');
+    }
+    if (title === '') {
+      setTitleStatus('error');
+    }
 
+    if (!isARequest && (link === '' || price === '')) {
+      if (link === '') {
+        setLinkStatus('error');
+      }
+      if (price === '') {
+        setPriceStatus('error');
+      }
+    }
     if (isARequest) {
       const newRequest = {
         title: title,
@@ -68,34 +99,45 @@ function Form({ formTitle, isARequest }) {
   return (
     <form>
       <h1>{formTitle}</h1>
-      <h3>Title your request</h3>
-      <input
-        className="title-input"
-        value={title}
-        onChange={() => setTitle(event.target.value)}
-      ></input>
-      <h3> Select an option for each dropdown. </h3>
-      <div className="dropdown-container">
-        <Dropdown
-          options={subjects}
-          label="Subject"
-          selected={subjectSelected}
-          setSelected={setSubjectSelected}
-        />
+      <label>
+        Title your request
+        <input
+          className="title-input"
+          value={title}
+          onChange={() => setTitle(event.target.value)}
+        ></input>
+        {titleStatus == 'error' && (
+          <p className="error">This field is required.</p>
+        )}
+      </label>
+      <label className="dropdown-header">
+        {' '}
+        Select an option for each dropdown.
+        <div className="dropdown-container">
+          <Dropdown
+            options={subjects}
+            label="Subject"
+            selected={subjectSelected}
+            setSelected={setSubjectSelected}
+            isSubmitted={isSubmitted}
+          />
 
-        <Dropdown
-          options={resourceTypes}
-          label="Resource Type"
-          selected={resourceTypeSelected}
-          setSelected={setResourceTypeSelected}
-        />
-        <Dropdown
-          options={formats}
-          label="Format"
-          selected={formatSelected}
-          setSelected={setFormatSelected}
-        />
-      </div>
+          <Dropdown
+            options={resourceTypes}
+            label="Resource Type"
+            selected={resourceTypeSelected}
+            setSelected={setResourceTypeSelected}
+            isSubmitted={isSubmitted}
+          />
+          <Dropdown
+            options={formats}
+            label="Format"
+            selected={formatSelected}
+            setSelected={setFormatSelected}
+            isSubmitted={isSubmitted}
+          />
+        </div>
+      </label>
       <fieldset>
         <legend>Select up to 4 Grade Levels</legend>
         {grades.map(option => (
@@ -105,11 +147,15 @@ function Form({ formTitle, isARequest }) {
               type="checkbox"
               label={option}
               value={option}
+              disabled={gradesDisabled && !gradesSelected.includes(option)}
               onChange={handleCheckboxChange}
             />
             {option}
           </label>
         ))}
+        {gradesStatus == 'error' && (
+          <p className="error bottom-right">This field is required.</p>
+        )}
       </fieldset>
       <div className="link-and-price">
         {!isARequest && (
@@ -124,6 +170,9 @@ function Form({ formTitle, isARequest }) {
                 value={link}
                 onChange={event => setLink(event.target.value)}
               ></input>
+              {linkStatus == 'error' && (
+                <p className="error">This field is required.</p>
+              )}
             </label>
             <label>
               {' '}
@@ -135,39 +184,48 @@ function Form({ formTitle, isARequest }) {
                 value={price}
                 onChange={event => setPrice(event.target.value)}
               ></input>
+              {priceStatus == 'error' && (
+                <p className="error">This field is required.</p>
+              )}
             </label>
           </>
         )}
       </div>
 
-      <h3> Describe your request</h3>
-      <textarea
-        className="description-input"
-        onInput={handleDescriptionInput}
-        value={description}
-      >
+      <label>
         {' '}
-      </textarea>
-      <div> {`${description.length}/600`}</div>
-      {/* {!isARequest && (
-        <label>
-      <div> {`${description.length}/1500`}</div>
-      {!isARequest && (
-        <label className="link-input">
-          Link to your Resource<input type="link" placeholder="Link"></input>
-        </label>
-      )} */}
+        {isARequest ? 'Describe your request' : 'Describe your resource'}
+        <textarea
+          className="description-input"
+          onInput={handleDescriptionInput}
+          value={description}
+        >
+          {' '}
+        </textarea>
+        <div> {`${description.length}/1500`}</div>
+      </label>
       {isARequest ? (
-        <h3>Provide your email to get updates on your request.</h3>
+        <label>
+          Provide your email to get updates on your request.
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={() => setEmail(event.target.value)}
+          ></input>
+        </label>
       ) : (
-        <h3>Provide your email to get updates on your resource.</h3>
+        <label>
+          Provide your email to get updates on your resource.
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={() => setEmail(event.target.value)}
+          ></input>
+        </label>
       )}
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={() => setEmail(event.target.value)}
-      ></input>
+
       <button type="submit" onClick={handleSubmit}>
         Submit
       </button>
