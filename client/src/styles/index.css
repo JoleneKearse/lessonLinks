@@ -16,11 +16,13 @@
   --light: #fcfcfc; /* Light */
   --dark: #333333; /* Dark */
   --dark-grey: #999999; /* Dark grey */
-  --highlight: #ff4690; /* Highlight */
-  --highlight-dark: #f24389; /* Darker highlight */
-  --bright-bg: #4051e9; /* Bright BG */
-  --gray-bg: #f2f2f2; /* Gray */
-  --error-red: #ff3b30; /* Red for errors */
+  --pale-grey: #F0F0F0; /* Pale grey */
+  --highlight: #FF4690; /* Highlight */
+  --highlight-dark: #F24389; /* Darker highlight */
+  --bright-bg: #4051E9; /* Bright BG */
+  --gray-bg: #F2F2F2; /* Gray */
+  --error-red: #FF3B30; /* Red for errors */
+
 
   color-scheme: light;
   color: var(--dark);

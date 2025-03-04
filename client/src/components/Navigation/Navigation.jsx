@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router';
 import './Navigation.css';
+import logoImage from '../../assets/LL_logo.png'; // Import the image
 
 function Navigation() {
   const location = useLocation();

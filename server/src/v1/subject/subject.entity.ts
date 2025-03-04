@@ -6,7 +6,6 @@ import { BaseDTO, BaseEntity } from '../../utils/base.entity.js';
 import { SubSubjectEntity } from '../sub-subject/sub-subject.entity.js';
 import { ResourceEntity } from '../resource/resource.entity.js';
 
-
 export class NewSubjectDTO {
   @IsNotEmpty()
   @IsString()
