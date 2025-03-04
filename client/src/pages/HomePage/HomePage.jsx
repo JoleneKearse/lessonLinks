@@ -250,8 +250,8 @@ const HomePage = () => {
         <section className="comparison">
           <div className="container">
             <div className="section-title">
-              <h2>Why LessonLinks <span className="highlight-text">Stands Out</span></h2>
-              <p>See how our resource request feature compares to traditional teacher marketplaces</p>
+              <h2>How LessonLinks <span className="highlight-text">Stands Out</span></h2>
+              <p>See what our resource request feature enables</p>
             </div>
             <table className="comparison-table">
               <thead>
@@ -267,20 +267,10 @@ const HomePage = () => {
                   <td><i className="fas fa-check check-icon"></i> Post detailed requests for exactly what you need</td>
                   <td><i className="fas fa-times x-icon"></i> Limited to pre-made resources only</td>
                 </tr>
-                <tr>
-                  <td>Browse Existing Resources</td>
-                  <td><i className="fas fa-check check-icon"></i> Thousands of quality resources</td>
-                  <td><i className="fas fa-check check-icon"></i> Large selection of resources</td>
-                </tr>
                 <tr className="feature-highlight">
                   <td><strong>Direct Creator Collaboration</strong></td>
                   <td><i className="fas fa-check check-icon"></i> Work directly with creators on custom resources</td>
                   <td><i className="fas fa-times x-icon"></i> Limited communication with creators</td>
-                </tr>
-                <tr>
-                  <td>Seller Tools</td>
-                  <td><i className="fas fa-check check-icon"></i> Create and sell your resources</td>
-                  <td><i className="fas fa-check check-icon"></i> Create and sell your resources</td>
                 </tr>
                 <tr className="feature-highlight">
                   <td><strong>Income Opportunities for Creators</strong></td>

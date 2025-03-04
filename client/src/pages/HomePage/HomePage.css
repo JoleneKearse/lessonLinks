@@ -51,13 +51,13 @@
 
 /* Request Feature Section */
 .request-feature {
-  background-color: transparent;
-  padding: 60px 0;
+  width: 100%;
+  padding: 80px 0;
   margin-top: 0;
   position: relative;
   z-index: 10;
-  border: 1px solid var(--dark-grey);
-  border-radius: 20px;
+  border-top: 1px solid var(--dark-grey);
+  border-bottom: 1px solid var(--dark-grey);
   overflow: hidden;
 }
 
@@ -189,7 +189,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px dashed var(--dark-grey);
+  border: 1px dashed var(--dark-grey); /* Base border */
   border-radius: 10px;
   padding: 30px;
   transition: transform 0.3s ease;
@@ -200,7 +200,7 @@
 
 .see-all-card:hover {
   transform: translateY(-5px);
-  background-color: rgba(0, 0, 0, 0.02);
+  background-color: yellow;
 }
 
 .see-all-card .fas {
@@ -234,6 +234,7 @@
 .how-it-works {
   padding: 80px 0;
   background-color: var(--light);
+  border-bottom: 1px solid var(--dark-grey);
 }
 
 .process-steps {
@@ -245,39 +246,41 @@
 }
 
 .process-step {
-  width: 250px;
+  width: 300px;
   text-align: center;
-  padding: 0 20px;
+  padding: 0 24px;
   position: relative;
   z-index: 1;
 }
 
 .step-content {
   background-color: var(--gray-bg);
+  border: 1px solid var(--dark-grey);
   padding: 30px 20px;
   border-radius: 10px;
-  box-shadow: var(--shadow);
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+.step-content:hover {
+  transform: scale(1.02);
+}
+
 .step-number {
   width: 50px;
   height: 50px;
   background-color: var(--bright-bg);
+  border: 1px solid var(--dark-grey);
+  padding: 20px 20px;
   border-radius: 50%;
-  color: var(--dark);
+  color: var(--pure-white);
   font-size: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 15px;
-}
-
-.process-step:nth-child(2) .step-number {
-  background-color: var(--bright-bg);
 }
 
 .process-step h3 {
@@ -291,18 +294,17 @@
 
 .process-connector {
   position: absolute;
-  top: 25px;
+  top: 60px;
   left: 20%;
   right: 20%;
   height: 2px;
-  background-color: var(--gray-bg);
+  background-color: var(--bright-bg);
   z-index: 0;
 }
 
 /* Comparison Section */
 .comparison {
   padding: 80px 0;
-  background-color: var(--gray-bg);
 }
 
 .comparison-table {
@@ -323,7 +325,7 @@
 
 .comparison-table th {
   background-color: var(--bright-bg);
-  color: var(--dark);
+  color: var(--pure-white);
 }
 
 .comparison-table tr:nth-child(even) {

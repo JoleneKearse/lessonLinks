@@ -19,7 +19,7 @@
   --highlight: #FF4690; /* Highlight */
   --highlight-dark: #F24389; /* Darker highlight */
   --bright-bg: #4051E9; /* Bright BG */
-  --gray-bg: #EDEDED; /* Gray */
+  --gray-bg: #F2F2F2; /* Gray */
   --error-red: #FF3B30; /* Red for errors */
 
   color-scheme: light;
