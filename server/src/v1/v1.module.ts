@@ -1,5 +1,4 @@
 import { Module, Logger } from '@nestjs/common';
-
 import { SubjectModule } from './subject/subject.module.js';
 import { SubSubjectModule } from './sub-subject/sub-subject.module.js';
 import { UserModule } from './user/user.module.js';
