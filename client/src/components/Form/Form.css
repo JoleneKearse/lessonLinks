@@ -54,7 +54,37 @@ input[type='email'] {
   width: 100%;
 }
 
+/* 
 .link-input {
   display: grid;
   width: 100%;
+} */
+
+fieldset {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 20px;
+}
+
+fieldset > legend {
+  grid-column: span 3;
+}
+
+fieldset > input[type='checkbox'] {
+  display: flex;
+  justify-content: start;
+} 
+
+input {
+  font-size: 1.1rem;
+}
+
+.link-input {
+  display: flex;
+  flex-grow: 1;
+  gap: 20px;
+}
+
+.link-input input {
+  flex-grow: 1;
 }
