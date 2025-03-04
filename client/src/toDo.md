@@ -1,4 +1,4 @@
-- CSS for resource cards
+- CSS for resource cards Wendy?
 - CSS for form ✅
   - Made it responsive for smaller screens ✅
   - Made all inputs consistent sizing and gaps between each ✅
@@ -13,6 +13,7 @@
 - Add form validation and error handling (partly done see sub-sections below)
   - error handling for empty fields ✅
   - Check if inputs are correct type with REGEX (use ChatGPT or REGEX generator to help) Saniya?
+    - If input is incorrect type (like if they type in 24 for their email) give a helpful error message Saniya?
 - Convert grades array to a string range so ["3rd", "2nd", "4th"] can be displayed as "2nd-4th" Saniya?
 - For Requests since there will only be 1 grade (A string not an array) we need to change our logic in the case that isARequest=true OR convert the array to a single string before passing it to the the backend in that case.
 - Use endpoint to send json to backend on submission of form
