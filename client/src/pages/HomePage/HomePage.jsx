@@ -144,7 +144,7 @@ const HomePage = () => {
 
               <div ref={sliderRef} className="request-cards">
                 {/* No dummy card - start with the first real card */}
-                <div href="/browse-requests" className="request-card">
+                <div className="request-card">
                   <div className="request-card-header">Science - Grade 5</div>
                   <div className="request-card-body">
                     <h3>Ecosystems Interactive Notebook</h3>
@@ -163,7 +163,7 @@ const HomePage = () => {
                       standards.
                     </p>
                     <div className="request-cta">
-                      <span className="request-price">$30-45</span>
+                      <span className="request-price">$10-15</span>
                       <a href="/submit" className="btn btn-primary">
                         Create This Resource
                       </a>
@@ -171,7 +171,7 @@ const HomePage = () => {
                   </div>
                 </div>
 
-                <div href="/browse-requests" className="request-card">
+                <div className="request-card">
                   <div className="request-card-header">Math - Grade 3</div>
                   <div className="request-card-body">
                     <h3>Fractions Assessment Bundle</h3>
@@ -190,7 +190,7 @@ const HomePage = () => {
                       required.
                     </p>
                     <div className="request-cta">
-                      <span className="request-price">$25-35</span>
+                      <span className="request-price">$5-10</span>
                       <a href="/submit" className="btn btn-primary">
                         Create This Resource
                       </a>
@@ -198,7 +198,7 @@ const HomePage = () => {
                   </div>
                 </div>
 
-                <div href="/browse-requests" className="request-card">
+                <div className="request-card">
                   <div className="request-card-header">ELA - High School</div>
                   <div className="request-card-body">
                     <h3>Modern Poetry Analysis Unit</h3>
@@ -216,7 +216,7 @@ const HomePage = () => {
                       writing prompts, and final creative project options.
                     </p>
                     <div className="request-cta">
-                      <span className="request-price">$40-60</span>
+                      <span className="request-price">$10-15</span>
                       <a href="/submit" className="btn btn-primary">
                         Create This Resource
                       </a>
@@ -224,7 +224,7 @@ const HomePage = () => {
                   </div>
                 </div>
 
-                <div href="/browse-requests" className="request-card">
+                <div className="request-card">
                   <div className="request-card-header">
                     Social Studies - Middle School
                   </div>
@@ -245,7 +245,7 @@ const HomePage = () => {
                       and including a teacher guide.
                     </p>
                     <div className="request-cta">
-                      <span className="request-price">$35-50</span>
+                      <span className="request-price">$15-20</span>
                       <a href="/submit" className="btn btn-primary">
                         Create This Resource
                       </a>
@@ -313,65 +313,80 @@ const HomePage = () => {
           </div>
         </section>
 
-        <section className="comparison">
+        <section className="benefits-comparison">
           <div className="container">
             <div className="section-title">
-              <h2>
-                How LessonLinks{' '}
-                <span className="highlight-text">Stands Out</span>
-              </h2>
-              <p>See what our resource request feature enables</p>
+              <h2>Everyone Wins with LessonLinks</h2>
+              <p>Our request feature eliminates guesswork. Teachers get exactly what they need, and creators build resources that are guaranteed to deliver value.</p>
             </div>
-            <table className="comparison-table">
-              <thead>
-                <tr>
-                  <th>Feature</th>
-                  <th>LessonLinks</th>
-                  <th>Other Marketplaces</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="feature-highlight">
-                  <td>
-                    <strong>Custom Resource Requests</strong>
-                  </td>
-                  <td>
-                    <i className="fas fa-check check-icon"></i> Post detailed
-                    requests for exactly what you need
-                  </td>
-                  <td>
-                    <i className="fas fa-times x-icon"></i> Limited to pre-made
-                    resources only
-                  </td>
-                </tr>
-                <tr className="feature-highlight">
-                  <td>
-                    <strong>Direct Creator Collaboration</strong>
-                  </td>
-                  <td>
-                    <i className="fas fa-check check-icon"></i> Work directly
-                    with creators on custom resources
-                  </td>
-                  <td>
-                    <i className="fas fa-times x-icon"></i> Limited
-                    communication with creators
-                  </td>
-                </tr>
-                <tr className="feature-highlight">
-                  <td>
-                    <strong>Income Opportunities for Creators</strong>
-                  </td>
-                  <td>
-                    <i className="fas fa-check check-icon"></i> Sell your
-                    resources + fulfill custom requests
-                  </td>
-                  <td>
-                    <i className="fas fa-check check-icon"></i> Sell your
-                    resources only
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+
+            <div className="benefits-container">
+              <div className="benefits-card teachers-card">
+                <div className="card-header">
+                  <h3><i className="fas fa-chalkboard-teacher"></i>Benefits for Teachers</h3>
+                  <p>Get exactly what you need for your classroom without compromise</p>
+                </div>
+                <ul className="benefits-list">
+                  <li className="benefit-item">
+                    <div className="check-icon">
+                      <i className="fas fa-check"></i>
+                    </div>
+                    <div className="benefit-text">Get resources perfectly tailored to your curriculum and students' needs</div>
+                  </li>
+                  <li className="benefit-item">
+                    <div className="check-icon">
+                      <i className="fas fa-check"></i>
+                    </div>
+                    <div className="benefit-text">Save time by not having to modify generic resources</div>
+                  </li>
+                  <li className="benefit-item">
+                    <div className="check-icon">
+                      <i className="fas fa-check"></i>
+                    </div>
+                    <div className="benefit-text">Pay only for what you need, rather than buying packages with unused content</div>
+                  </li>
+                  <li className="benefit-item">
+                    <div className="check-icon">
+                      <i className="fas fa-check"></i>
+                    </div>
+                    <div className="benefit-text">Build relationships with creators who understand your teaching style</div>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="benefits-card creators-card">
+                <div className="card-header">
+                  <h3><i className="fas fa-pencil-alt"></i>Benefits for Creators</h3>
+                  <p>Turn your teaching expertise into a flexible, rewarding business</p>
+                </div>
+                <ul className="benefits-list">
+                  <li className="benefit-item">
+                    <div className="check-icon">
+                      <i className="fas fa-check"></i>
+                    </div>
+                    <div className="benefit-text">Create resources you know teachers actually want and need</div>
+                  </li>
+                  <li className="benefit-item">
+                    <div className="check-icon">
+                      <i className="fas fa-check"></i>
+                    </div>
+                    <div className="benefit-text">Build a client base for repeat business and referrals</div>
+                  </li>
+                  <li className="benefit-item">
+                    <div className="check-icon">
+                      <i className="fas fa-check"></i>
+                    </div>
+                    <div className="benefit-text">Develop new skills by tackling diverse project requests</div>
+                  </li>
+                  <li className="benefit-item">
+                    <div className="check-icon">
+                      <i className="fas fa-check"></i>
+                    </div>
+                    <div className="benefit-text">Earn premium rates for custom work</div>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </section>
 
