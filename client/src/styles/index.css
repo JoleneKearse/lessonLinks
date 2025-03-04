@@ -6,21 +6,21 @@
   /* Font family variables */
   --header-font: 'Inter Tight', system-ui, sans-serif;
   --base-font: 'Helvetica Neue', Arial, system-ui, sans-serif;
-  
+
   /* Use base font as the default */
   font-family: var(--base-font);
   line-height: 1.5;
   font-weight: 400;
 
-  --pure-white: #FFFFFF; /* Pure white */
-  --light: #FCFCFC; /* Light */
+  --pure-white: #ffffff; /* Pure white */
+  --light: #fcfcfc; /* Light */
   --dark: #333333; /* Dark */
   --dark-grey: #999999; /* Dark grey */
-  --highlight: #FF4690; /* Highlight */
-  --highlight-dark: #F24389; /* Darker highlight */
-  --bright-bg: #4051E9; /* Bright BG */
-  --gray-bg: #F2F2F2; /* Gray */
-  --error-red: #FF3B30; /* Red for errors */
+  --highlight: #ff4690; /* Highlight */
+  --highlight-dark: #f24389; /* Darker highlight */
+  --bright-bg: #4051e9; /* Bright BG */
+  --gray-bg: #f2f2f2; /* Gray */
+  --error-red: #ff3b30; /* Red for errors */
 
   color-scheme: light;
   color: var(--dark);
@@ -179,7 +179,13 @@ button {
 }
 
 /* Apply header font to heading elements */
-h1, h2, h3, h4, h5, h6, .logo {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.logo {
   font-family: var(--header-font);
 }
 
@@ -188,3 +194,6 @@ nav {
   font-family: var(--header-font);
 }
 
+a:focus {
+  cursor: pointer;
+}
