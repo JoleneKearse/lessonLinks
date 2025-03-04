@@ -127,7 +127,7 @@ const HomePage = () => {
             <div className="section-title">
               <h2>Active Resource Requests</h2>
               <p>
-                See what other teachers are looking for and fulfill their
+                See what teachers are looking for and help fulfill their
                 requests.
               </p>
             </div>
