@@ -1,0 +1,43 @@
+/* RequestPage specific styles */
+.request-page {
+  padding-top: 120px; /* Space for the fixed Navigation component */
+}
+
+.request-page .container {
+  width: 90%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.request-page form {
+  background-color: var(--white);
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.request-page h1 {
+  margin-bottom: 25px;
+  color: var(--primary);
+}
+
+.request-page h3 {
+  margin: 20px 0 10px;
+  color: var(--text);
+}
+
+.request-page button[type="submit"] {
+  background-color: var(--highlight);
+  color: var(--white);
+  padding: 12px 25px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s;
+}
+
+.request-page button[type="submit"]:hover {
+  background-color: var(--primary);
+} 
