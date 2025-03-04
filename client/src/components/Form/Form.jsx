@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import Dropdown from './Dropdown';
-import { subjects, grades, resourceTypes, formats } from '../CONSTANTS';
+import Dropdown from '../Dropdown/Dropdown';
+import { subjects, grades, resourceTypes, formats } from '../../CONSTANTS';
+import './Form.css';
 
 function Form({ formTitle, isARequest }) {
   const [subjectSelected, setSubjectSelected] = useState('none');
