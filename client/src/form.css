@@ -8,7 +8,7 @@
 }
 
 .dropdown-header {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
 }
 
 .label-on-top {
@@ -29,6 +29,12 @@ select {
 
 .error {
   color: rgb(240, 145, 145);
+}
+
+.bottom-right {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
 }
 
 .description-input {
@@ -74,7 +80,9 @@ input[type='email'] {
 fieldset {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  padding: 20px;
+  padding-inline: 20px;
+  padding-block: 10px;
+  position: relative;
 }
 
 fieldset > legend {
@@ -95,6 +103,11 @@ form {
   gap: 20px;
   width: 100%;
   margin-top: 50px;
+}
+
+form > button {
+  width: 100%;
+  margin: 0px;
 }
 
 @media (max-width: 600px) {

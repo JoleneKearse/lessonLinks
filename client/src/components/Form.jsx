@@ -7,6 +7,7 @@ function Form({ formTitle, isARequest }) {
   const [title, setTitle] = useState('');
   const [subjectSelected, setSubjectSelected] = useState('none');
   const [gradesSelected, setGradesSelected] = useState([]);
+  const [gradesDisabled, setGradesDisabled] = useState(false);
   const [resourceTypeSelected, setResourceTypeSelected] = useState('none');
   const [formatSelected, setFormatSelected] = useState('none');
   const [description, setDescription] = useState('');
@@ -14,6 +15,13 @@ function Form({ formTitle, isARequest }) {
   const [price, setPrice] = useState('');
   const [email, setEmail] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  // Status Variables (dropdown statuses are handled in dropdown component)
+  const [titleStatus, setTitleStatus] = useState('normal');
+  const [gradesStatus, setGradesStatus] = useState('normal');
+  const [linkStatus, setLinkStatus] = useState('normal');
+  const [priceStatus, setPriceStatus] = useState('normal');
+  const [emailStatus, setEmailStatus] = useState('normal');
 
   function handleDescriptionInput(event) {
     const input = event.target.value;
@@ -25,19 +33,40 @@ function Form({ formTitle, isARequest }) {
   }
 
   function handleCheckboxChange(event) {
-    if (event.target.checked) {
+    if (event.target.checked && gradesSelected.length < 4) {
       setGradesSelected([...gradesSelected, event.target.value]);
+      setGradesStatus('normal');
+      if (gradesSelected.length === 3) {
+        setGradesDisabled(true);
+      }
+    } else if (event.target.checked) {
+      setGradesDisabled(true);
     } else {
       setGradesSelected(
         gradesSelected.filter(grade => grade !== event.target.value)
       );
+      setGradesDisabled(false);
     }
   }
 
   function handleSubmit(event) {
     event.preventDefault();
     setIsSubmitted(true);
+    if (gradesSelected.length === 0) {
+      setGradesStatus('error');
+    }
+    if (title === '') {
+      setTitleStatus('error');
+    }
 
+    if (!isARequest && (link === '' || price === '')) {
+      if (link === '') {
+        setLinkStatus('error');
+      }
+      if (price === '') {
+        setPriceStatus('error');
+      }
+    }
     if (isARequest) {
       const newRequest = {
         title: title,
@@ -77,6 +106,9 @@ function Form({ formTitle, isARequest }) {
           value={title}
           onChange={() => setTitle(event.target.value)}
         ></input>
+        {titleStatus == 'error' && (
+          <p className="error">This field is required.</p>
+        )}
       </label>
       <label className="dropdown-header">
         {' '}
@@ -115,11 +147,15 @@ function Form({ formTitle, isARequest }) {
               type="checkbox"
               label={option}
               value={option}
+              disabled={gradesDisabled && !gradesSelected.includes(option)}
               onChange={handleCheckboxChange}
             />
             {option}
           </label>
         ))}
+        {gradesStatus == 'error' && (
+          <p className="error bottom-right">This field is required.</p>
+        )}
       </fieldset>
       <div className="link-and-price">
         {!isARequest && (
@@ -134,6 +170,9 @@ function Form({ formTitle, isARequest }) {
                 value={link}
                 onChange={event => setLink(event.target.value)}
               ></input>
+              {linkStatus == 'error' && (
+                <p className="error">This field is required.</p>
+              )}
             </label>
             <label>
               {' '}
@@ -145,6 +184,9 @@ function Form({ formTitle, isARequest }) {
                 value={price}
                 onChange={event => setPrice(event.target.value)}
               ></input>
+              {priceStatus == 'error' && (
+                <p className="error">This field is required.</p>
+              )}
             </label>
           </>
         )}
@@ -152,7 +194,7 @@ function Form({ formTitle, isARequest }) {
 
       <label>
         {' '}
-        Describe your request
+        {isARequest ? 'Describe your request' : 'Describe your resource'}
         <textarea
           className="description-input"
           onInput={handleDescriptionInput}
