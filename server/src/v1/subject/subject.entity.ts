@@ -4,6 +4,7 @@ import { IntersectionType } from '@nestjs/mapped-types';
 
 import { BaseDTO, BaseEntity } from '../../utils/base.entity.js';
 import { SubSubjectEntity } from '../sub-subject/sub-subject.entity.js';
+import { ResourceEntity } from '../resource/resource.entity.js';
 
 
 export class NewSubjectDTO {
@@ -22,4 +23,7 @@ export class SubjectEntity extends BaseEntity {
 
   @OneToMany(() => SubSubjectEntity, (subSubject) => subSubject.subject)
   subSubjects: SubSubjectEntity[];
+
+  @OneToMany(() => ResourceEntity, (resource) => resource.subject)
+  resources: ResourceEntity[];
 }

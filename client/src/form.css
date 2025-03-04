@@ -45,7 +45,16 @@ input[type='email'] {
   width: 100%;
 }
 
+input {
+  font-size: 1.1rem;
+}
+
 .link-input {
-  display: grid;
-  width: 100%;
+  display: flex;
+  flex-grow: 1;
+  gap: 20px;
+}
+
+.link-input input {
+  flex-grow: 1;
 }
