@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import './Dropdown.css';
 
 function Dropdown({
   options,
@@ -6,10 +7,10 @@ function Dropdown({
   multiple,
   selected,
   setSelected,
-  status,
-  setStatus,
-  initialTermIsDisabled,
-  setInitialTermIsDisabled,
+  status = 'normal',
+  setStatus = () => {},
+  initialTermIsDisabled = false,
+  setInitialTermIsDisabled = () => {},
 }) {
   function handleInput(event) {
     if (event.target.value !== 'none') {
@@ -54,10 +55,11 @@ Dropdown.propTypes = {
   label: PropTypes.string.isRequired,
   selected: PropTypes.string.isRequired,
   setSelected: PropTypes.func.isRequired,
-  status: PropTypes.string.isRequired,
-  setStatus: PropTypes.func.isRequired,
-  initialTermIsDisabled: PropTypes.bool.isRequired,
-  setInitialTermIsDisabled: PropTypes.func.isRequired,
+  status: PropTypes.string,
+  setStatus: PropTypes.func,
+  initialTermIsDisabled: PropTypes.bool,
+  setInitialTermIsDisabled: PropTypes.func,
+  multiple: PropTypes.bool,
 };
 
 export default Dropdown;

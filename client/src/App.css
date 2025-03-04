@@ -1,13 +1,12 @@
 #root {
   margin: 0 auto;
-  padding: 2rem;
   text-align: start;
   display: grid;
   justify-content: center;
 }
 
 * {
-  color: white;
+  color: var(--dark);
 }
 
 label > input {

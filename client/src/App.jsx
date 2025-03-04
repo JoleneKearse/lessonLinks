@@ -1,10 +1,10 @@
 import './App.css';
 import { createBrowserRouter, RouterProvider } from 'react-router';
-import HomePage from './pages/HomePage';
-import RequestPage from './pages/RequestPage';
-import BrowseResourcesPage from './pages/BrowseResourcesPage';
-import BrowseRequestsPage from './pages/BrowseRequestsPage';
-import SubmitPage from './pages/SubmitPage';
+import HomePage from './pages/HomePage/HomePage';
+import RequestPage from './pages/RequestPage/RequestPage';
+import BrowseResourcesPage from './pages/BrowseResourcesPage/BrowseResourcesPage';
+import BrowseRequestsPage from './pages/BrowseRequestsPage/BrowseRequestsPage';
+import SubmitPage from './pages/SubmitPage/SubmitPage';
 
 function App() {
   const router = createBrowserRouter([
