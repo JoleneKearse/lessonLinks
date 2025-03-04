@@ -1,6 +1,6 @@
-import { Entity, Column, ManyToOne, JoinColumn } from "typeorm";
-import { BaseEntity } from "../../utils/base.entity";
-import { UserEntity } from "../user/user.entity";
+import { Entity, Column, ManyToOne, JoinColumn } from 'typeorm';
+import { BaseEntity } from '../../utils/base.entity.js';
+import { UserEntity } from '../user/user.entity.js';
 
 export enum UserTypeEnum {
   'CREATOR' = 'creator',

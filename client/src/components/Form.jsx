@@ -14,9 +14,12 @@ function Form({ formTitle, isARequest }) {
   const [price, setPrice] = useState('');
   const [email, setEmail] = useState('');
 
-  function handlesDescriptionInput(event) {
-    if (event.target.value.length <= 600) {
-      setDescription(event.target.value);
+  function handleDescriptionInput(event) {
+    const input = event.target.value;
+    if (input.length <= 1500) {
+      setDescription(input);
+    } else {
+      setDescription(input.substring(0, 1500));
     }
   }
 
@@ -140,7 +143,7 @@ function Form({ formTitle, isARequest }) {
       <h3> Describe your request</h3>
       <textarea
         className="description-input"
-        onChange={handlesDescriptionInput}
+        onInput={handleDescriptionInput}
         value={description}
       >
         {' '}
@@ -148,6 +151,9 @@ function Form({ formTitle, isARequest }) {
       <div> {`${description.length}/600`}</div>
       {/* {!isARequest && (
         <label>
+      <div> {`${description.length}/1500`}</div>
+      {!isARequest && (
+        <label className="link-input">
           Link to your Resource<input type="link" placeholder="Link"></input>
         </label>
       )} */}
