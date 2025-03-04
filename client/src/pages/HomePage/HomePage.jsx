@@ -164,7 +164,7 @@ const HomePage = () => {
                     </p>
                     <div className="request-cta">
                       <span className="request-price">$30-45</span>
-                      <a href="#" className="btn btn-primary">
+                      <a href="/submit" className="btn btn-primary">
                         Create This Resource
                       </a>
                     </div>
@@ -191,7 +191,7 @@ const HomePage = () => {
                     </p>
                     <div className="request-cta">
                       <span className="request-price">$25-35</span>
-                      <a href="#" className="btn btn-primary">
+                      <a href="/submit" className="btn btn-primary">
                         Create This Resource
                       </a>
                     </div>
@@ -217,7 +217,7 @@ const HomePage = () => {
                     </p>
                     <div className="request-cta">
                       <span className="request-price">$40-60</span>
-                      <a href="#" className="btn btn-primary">
+                      <a href="/submit" className="btn btn-primary">
                         Create This Resource
                       </a>
                     </div>
@@ -246,7 +246,7 @@ const HomePage = () => {
                     </p>
                     <div className="request-cta">
                       <span className="request-price">$35-50</span>
-                      <a href="#" className="btn btn-primary">
+                      <a href="/submit" className="btn btn-primary">
                         Create This Resource
                       </a>
                     </div>
