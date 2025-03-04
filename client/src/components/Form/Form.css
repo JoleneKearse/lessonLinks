@@ -1,3 +1,4 @@
+/* Form component styles */
 .dropdown-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -20,15 +21,19 @@
   padding: 0.3rem;
   font-size: 1.5rem;
   height: 30px;
+  background-color: var(--gray-bg);
+  color: var(--dark);
 }
 
 select {
   width: 100%;
   padding: 0.5rem;
+  background-color: var(--gray-bg);
+  color: var(--dark);
 }
 
 .error {
-  color: rgb(240, 145, 145);
+  color: var(--error-red);
 }
 
 .bottom-right {
@@ -43,6 +48,8 @@ select {
   overflow: scroll;
   text-wrap: wrap;
   resize: none;
+  background-color: var(--gray-bg);
+  color: var(--dark);
 }
 
 input[type='email'] {
@@ -50,6 +57,8 @@ input[type='email'] {
   padding: 0.3rem;
   font-size: 1.5rem;
   height: 30px;
+  background-color: var(--gray-bg);
+  color: var(--dark);
 }
 
 .link-and-price {

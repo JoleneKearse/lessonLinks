@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
+import './Dropdown.css';
 
 function Dropdown({ options, label, selected, setSelected, isSubmitted }) {
   const [status, setStatus] = useState('normal');
