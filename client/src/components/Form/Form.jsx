@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Dropdown from '../Dropdown/Dropdown';
 import { subjects, grades, resourceTypes, formats } from '../../CONSTANTS';
 import './Form.css';
+import PropTypes from 'prop-types';
 
 function Form({ formTitle, isARequest }) {
   const [title, setTitle] = useState('');
@@ -105,6 +106,7 @@ function Form({ formTitle, isARequest }) {
           className="title-input"
           value={title}
           onChange={() => setTitle(event.target.value)}
+          data-status={titleStatus}
         ></input>
         {titleStatus == 'error' && (
           <p className="error">This field is required.</p>
@@ -138,7 +140,7 @@ function Form({ formTitle, isARequest }) {
           />
         </div>
       </label>
-      <fieldset>
+      <fieldset data-status={gradesStatus}>
         <legend>Select up to 4 Grade Levels</legend>
         {grades.map(option => (
           <label key={option}>

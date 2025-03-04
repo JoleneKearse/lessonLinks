@@ -36,6 +36,11 @@ select {
   color: var(--error-red);
 }
 
+input[data-status='error'],
+fieldset[data-status='error'] {
+  border: 2px solid var(--error-red);
+}
+
 .bottom-right {
   position: absolute;
   bottom: 5px;
