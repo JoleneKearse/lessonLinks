@@ -7,16 +7,14 @@ import { ResourceGradeEntity } from '../resource-grade/resource-grade.entity.js'
 import { ResourceTagEntity } from '../resource-tag/resource-tag.entity.js';
 import { ResourceGradeModule } from '../resource-grade/resource-grade.module.js';
 import { ResourceTagModule } from '../resource-tag/resource-tag.module.js';
+import { TagModule } from '../tag/tag.module.js';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([
-      ResourceEntity,
-      ResourceGradeEntity,
-      ResourceTagEntity,
-    ]),
+    TypeOrmModule.forFeature([ResourceEntity]),
     ResourceGradeModule,
     ResourceTagModule,
+    TagModule,
   ],
   controllers: [ResourceController],
   providers: [ResourceService],

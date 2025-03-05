@@ -17,6 +17,10 @@ export class ResourceController {
     @Body('grades') grades: string[],
     @Body('tags') tags: string[],
   ): Promise<ResourceEntity> {
-    return await this.resourceService.create(newResourceDTO, grades, tags);
+    return await this.resourceService.createResourceAndDependentGradesAndTags(
+      newResourceDTO,
+      grades,
+      tags,
+    );
   }
 }
