@@ -1,10 +1,16 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* ==========================================================================
+   Homepage Specific Styles
+   ========================================================================== */
+
+/* Base Homepage Container */
+.homepage {
+  overflow-x: hidden;
+  width: 100%;
 }
 
-/* Hero Section */
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
 .hero {
   background: var(--light);
   color: var(--dark);
@@ -68,18 +74,9 @@
   padding: 0;
 }
 
-/* Request Feature Section */
-.request-feature {
-  width: 100%;
-  padding: 60px 0 40px 0;
-  margin-top: 0;
-  position: relative;
-  z-index: 10;
-  border-top: 1px solid var(--dark-grey);
-  border-bottom: 1px solid var(--dark-grey);
-  overflow: hidden;
-}
-
+/* ==========================================================================
+   Section Titles - Common Styling
+   ========================================================================== */
 .section-title {
   text-align: center;
   margin-bottom: 50px;
@@ -99,7 +96,21 @@
   color: var(--dark);
 }
 
-/* Update the request-cards container */
+/* ==========================================================================
+   Request Feature Section
+   ========================================================================== */
+.request-feature {
+  width: 100%;
+  padding: 60px 0 40px 0;
+  margin-top: 0;
+  position: relative;
+  z-index: 10;
+  border-top: 1px solid var(--dark-grey);
+  border-bottom: 1px solid var(--dark-grey);
+  overflow: hidden;
+}
+
+/* Request Cards Container */
 .request-cards-container {
   position: relative;
   width: 100%;
@@ -119,7 +130,7 @@
   margin-bottom: 5px;
 }
 
-/* Make sure the scrollbar styling is prominent */
+/* Scrollbar Styling */
 .request-cards::-webkit-scrollbar {
   height: 10px;
   background-color: #f5f5f5;
@@ -140,7 +151,7 @@
   display: block !important;
 }
 
-/* Update the request cards for better responsiveness */
+/* Request Cards */
 .request-card, .see-all-card {
   flex: 0 0 500px; /* Default size for larger screens */
   width: 500px;
@@ -220,6 +231,7 @@
   font-size: 1.2rem;
 }
 
+/* See All Card */
 .see-all-card {
   margin: 10px; 
   box-shadow: 0 10px 10px 5px rgba(0, 0, 0, 0.25);
@@ -232,14 +244,12 @@
   text-align: center;
   text-decoration: none;
   color: var(--dark);
-  /* Combined the transitions and added background-color with longer duration */
   transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 1.5s ease;
 }
 
 .see-all-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 15px 15px 8px rgba(0, 0, 0, 0.3);
-  /* Changed from bright yellow to a slightly softer yellow */
   background-color: #ffeb3b;
 }
 
@@ -270,7 +280,7 @@
   padding: 0;
 }
 
-/* Slider navigation arrows - keep these */
+/* Slider Navigation */
 .slider-arrow {
   position: absolute;
   top: 50%;
@@ -308,7 +318,9 @@
   right: -20px;
 }
 
-/* How It Works Section */
+/* ==========================================================================
+   How It Works Section
+   ========================================================================== */
 .how-it-works {
   padding: 80px 0;
   background-color: var(--dark);
@@ -384,7 +396,9 @@
   z-index: 0;
 }
 
-/* Benefits Section */
+/* ==========================================================================
+   Benefits Section
+   ========================================================================== */
 .benefits-comparison {
   padding: 80px 0;
   background-color: var(--light);
@@ -395,7 +409,7 @@
   flex-wrap: wrap;
   gap: 40px;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 40px;
 }
 
 .benefits-card {
@@ -522,26 +536,9 @@
   color: var(--dark);
 }
 
-@media (max-width: 768px) {
-  .benefits-container {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .section-title h2 {
-    font-size: 2.0rem;
-  }
-  
-  .card-header h3 {
-    font-size: 1.6rem;
-  }
-
-  .benefits-card {
-    width: 380px;
-  }
-}
-
-/* Floating Action Button */
+/* ==========================================================================
+   Floating Action Button
+   ========================================================================== */
 .floating-request-btn {
   position: fixed;
   bottom: 50px;
@@ -566,7 +563,11 @@
   margin-right: 8px;
 }
 
-/* Responsive Styles */
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+
+/* Large Desktop (up to 1200px) */
 @media (max-width: 1200px) {
   .hero h1 {
     font-size: 4.5rem;
@@ -575,8 +576,18 @@
   .hero p {
     font-size: 1.3rem;
   }
+
+  /* Reduce spacing */
+  .section-title {
+    margin-bottom: 20px;
+  }
+   
+  .request-cards-container {
+    margin-top: 20px;
+  }
 }
 
+/* Tablet Landscape (up to 992px) */
 @media (max-width: 992px) {
   .hero-content {
     display: flex;
@@ -634,8 +645,22 @@
     flex: 0 0 500px; 
     width: 500px;
   }
+
+  .floating-request-btn {
+    display: none;
+  }
+
+  /* Reduce spacing */
+  .section-title {
+    margin-bottom: 10px;
+  }
+    
+  .request-cards-container {
+    margin-top: 10px;
+  }
 }
 
+/* Tablet Portrait (up to 768px) */
 @media (max-width: 768px) {
   .hero {
     min-height: 500px;
@@ -671,15 +696,42 @@
   
   .request-card,
   .see-all-card {
-    flex: 0 0 500px; /* Even smaller on tablets */
+    flex: 0 0 500px;
     width: 500px;
   }
   
   .floating-request-btn {
     display: none;
   }
+  
+  .section-title {
+    margin-bottom: 10px;
+  }
+  
+  .request-cards-container {
+    margin-top: 10px;
+  }
+  
+  .benefits-container {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+  }
+  
+  .section-title h2 {
+    font-size: 2.0rem;
+  }
+  
+  .card-header h3 {
+    font-size: 1.6rem;
+  }
+
+  .benefits-card {
+    width: 380px;
+  }
 }
 
+/* Mobile (up to 576px) */
 @media (max-width: 576px) {
   .hero {
     min-height: 450px;
@@ -715,8 +767,18 @@
   .card-header h3 {
     font-size: 1.6rem;
   }
+  
+  /* Reduce spacing for mobile */
+  .section-title {
+    margin-bottom: 0; 
+  }
+  
+  .request-cards-container {
+    margin-top: 0;
+  }
 }
 
+/* Small Mobile (up to 375px) */
 @media (max-width: 375px) {
   .hero h1 {
     font-size: 2.2rem;
@@ -725,10 +787,4 @@
   .hero p {
     font-size: 1rem;
   }
-}
-
-/* Add this to ensure the entire page doesn't have horizontal overflow */
-.homepage {
-  overflow-x: hidden;
-  width: 100%;
 }
