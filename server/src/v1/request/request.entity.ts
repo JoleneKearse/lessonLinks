@@ -1,8 +1,10 @@
 import { Entity, Column, ManyToOne, JoinColumn } from 'typeorm';
-import { BaseEntity } from '../../utils/base.entity.js';
+import { BaseEntity, BaseDTO } from '../../utils/base.entity.js';
 import { SubjectEntity } from '../subject/subject.entity.js';
 import { SubSubjectEntity } from '../sub-subject/sub-subject.entity.js';
 import { UserEntity } from '../user/user.entity.js';
+import { IsEnum, IsNotEmpty, IsString, IsUUID } from 'class-validator';
+import { IntersectionType } from '@nestjs/mapped-types';
 
 export enum GradeEnum {
   FIRST = '1st',
@@ -28,6 +30,38 @@ export enum FormatEnum {
   WORD = 'word',
 }
 
+export class NewRequestDTO {
+  @IsNotEmpty()
+  @IsUUID()
+  requestedByUserId: string;
+
+  @IsNotEmpty()
+  @IsEnum(GradeEnum)
+  grade: GradeEnum;
+
+  @IsNotEmpty()
+  @IsUUID()
+  subjectId: string;
+
+  @IsNotEmpty()
+  @IsUUID()
+  subSubjectId: string;
+
+  @IsNotEmpty()
+  @IsString()
+  title: string;
+
+  @IsNotEmpty()
+  @IsString()
+  description: string;
+
+  @IsNotEmpty()
+  @IsEnum(FormatEnum)
+  format: FormatEnum;
+}
+
+export class RequestDTO extends IntersectionType(BaseDTO, NewRequestDTO) {}
+
 @Entity('request')
 export class RequestEntity extends BaseEntity {
   @Column({ type: 'enum', enum: GradeEnum, nullable: false })
@@ -42,15 +76,33 @@ export class RequestEntity extends BaseEntity {
   @Column({ type: 'enum', enum: FormatEnum, nullable: false })
   format: FormatEnum;
 
-  @ManyToOne(() => SubjectEntity, (subject) => subject.id, { onDelete: 'RESTRICT', nullable: false })
+  @ManyToOne(() => SubjectEntity, (subject) => subject.id, {
+    onDelete: 'RESTRICT',
+    nullable: false,
+  })
   @JoinColumn({ name: 'subject_id' })
   subject: Promise<SubjectEntity>;
 
-  @ManyToOne(() => SubSubjectEntity, (subSubject) => subSubject.id, { onDelete: 'RESTRICT', nullable: false })
+  @Column({ name: 'subject_id', type: 'uuid' })
+  subjectId: string;
+
+  @ManyToOne(() => SubSubjectEntity, (subSubject) => subSubject.id, {
+    onDelete: 'RESTRICT',
+    nullable: false,
+  })
   @JoinColumn({ name: 'sub_subject_id' })
   subSubject: Promise<SubSubjectEntity>;
 
-  @ManyToOne(() => UserEntity, (user) => user.id, { onDelete: 'CASCADE', nullable: false })
+  @Column({ name: 'sub_subject_id', type: 'uuid' })
+  subSubjectId: string;
+
+  @ManyToOne(() => UserEntity, (user) => user.id, {
+    onDelete: 'CASCADE',
+    nullable: false,
+  })
   @JoinColumn({ name: 'requested_by_user_id' })
   user: Promise<UserEntity>;
+
+  @Column({ name: 'requested_by_user_id', type: 'uuid' })
+  requestedByUserId: string;
 }

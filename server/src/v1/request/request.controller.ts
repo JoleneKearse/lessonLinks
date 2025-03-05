@@ -1,6 +1,6 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { RequestService } from './request.service.js';
-import { RequestEntity } from './request.entity.js';
+import { RequestEntity, NewRequestDTO } from './request.entity.js';
 
 @Controller('request')
 export class RequestController {
@@ -9,5 +9,11 @@ export class RequestController {
   @Get()
   async findAll(): Promise<RequestEntity[]> {
     return this.requestService.findAll();
+  }
+
+  @Post()
+  async create(
+    @Body() newRequestDTO: NewRequestDTO): Promise<RequestEntity> {
+    return await this.requestService.create(newRequestDTO);
   }
 }
