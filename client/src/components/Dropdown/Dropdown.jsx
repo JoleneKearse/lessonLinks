@@ -35,15 +35,13 @@ function Dropdown({ options, label, selected, setSelected, isSubmitted }) {
           onChange={event => handleInput(event)}
         >
           <option value="none" disabled={initialTermIsDisabled}>
-            {`Select ${label}`}
+            {`Select ${label.toLowerCase()}`}
           </option>
-          <optgroup label={`${label} options`}>
-            {options.map(option => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </optgroup>
+          {options.map(option => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
         </select>
       </div>
       {status == 'error' && <p className="error">This field is required.</p>}

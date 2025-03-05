@@ -1,6 +1,7 @@
 //import { useState } from 'react';
 import Navigation from '../../components/Navigation/Navigation';
 import Form from '../../components/Form/Form';
+import Footer from '../../components/Footer/Footer';
 import './RequestPage.css';
 
 function RequestPage() {
@@ -8,8 +9,9 @@ function RequestPage() {
     <div className="request-page">
       <Navigation />
       <div className="container">
-        <Form formTitle="Request a Resource" isARequest={true} />
+        <Form formTitle="Post a Request" isARequest={true} />
       </div>
+      <Footer />
     </div>
   );
 }
