@@ -14,18 +14,11 @@ export class ResourceGradeService {
     private readonly resourceGradeRepository: Repository<ResourceGradeEntity>,
   ) {}
 
-  async createResourceGrade(
-    newResourceGradeDTO: NewResourceGradeDTO,
-  ): Promise<void> {
-    const resourceGrade =
-      this.resourceGradeRepository.create(newResourceGradeDTO);
-    await this.resourceGradeRepository.save(resourceGrade);
-  }
-
-  async createResourceGrades(
+  async createMultiple(
     resource: ResourceEntity,
     grades: string[],
   ): Promise<void> {
+    console.log(`Inside createMultiple in ResourceGradeService`);
     const resourceGrades = grades.map((grade) => {
       const newResourceGradeDTO = new NewResourceGradeDTO();
       newResourceGradeDTO.resourceId = resource.id;

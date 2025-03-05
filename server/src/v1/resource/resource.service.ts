@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ResourceEntity, NewResourceDTO } from './resource.entity.js';
 import { ResourceGradeService } from '../resource-grade/resource-grade.service.js';
+import { TagService } from '../tag/tag.service.js';
 import { ResourceTagService } from '../resource-tag/resource-tag.service.js';
 
 @Injectable()
@@ -11,6 +12,7 @@ export class ResourceService {
     @InjectRepository(ResourceEntity)
     private readonly resourceRepository: Repository<ResourceEntity>,
     private readonly resourceGradeService: ResourceGradeService,
+    private readonly tagService: TagService,
     private readonly resourceTagService: ResourceTagService,
   ) {}
 
@@ -18,20 +20,22 @@ export class ResourceService {
     return this.resourceRepository.find();
   }
 
-  async create(
+  async createResourceAndDependentGradesAndTags(
     newResourceDTO: NewResourceDTO,
     grades: string[],
-    tags: string[],
+    tagNames: string[],
   ): Promise<ResourceEntity> {
     const resource = this.resourceRepository.create(newResourceDTO);
     const savedResource = await this.resourceRepository.save(resource);
 
     if (grades && grades.length > 0) {
-      await this.resourceGradeService.createResourceGrades(resource, grades);
+      await this.resourceGradeService.createMultiple(resource, grades);
     }
 
-    if (tags && tags.length > 0) {
-      // TODO: Implement this
+    if (tagNames && tagNames.length > 0) {
+      const tags = await this.tagService.findOrCreateByNames(tagNames);
+      const tagIds = tags.map((tag) => tag.id);
+      await this.resourceTagService.createMultiple(resource.id, tagIds);
     }
 
     return savedResource;
