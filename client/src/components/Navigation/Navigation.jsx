@@ -16,6 +16,11 @@ function Navigation() {
     setMenuOpen(!menuOpen);
   };
 
+  // Helper function to check if link is active
+  const isActive = (path) => {
+    return location.pathname === path;
+  };
+
   return (
     <header>
       <nav>
@@ -42,13 +47,28 @@ function Navigation() {
         
         <ul className={`nav-links ${menuOpen ? 'active' : ''}`}>
           <li>
-            <Link to="/request" className="bordered-link">Post a Request</Link>
+            <Link 
+              to="/request" 
+              className={`bordered-link ${isActive('/request') ? 'active-link' : ''}`}
+            >
+              Post a Request
+            </Link>
           </li>
           <li>
-            <Link to="/browse-resources">Browse Resources</Link>
+            <Link 
+              to="/browse-resources" 
+              className={isActive('/browse-resources') ? 'active-link' : ''}
+            >
+              Browse Resources
+            </Link>
           </li>
           <li>
-            <Link to="/browse-requests">See Requests</Link>
+            <Link 
+              to="/browse-requests" 
+              className={isActive('/browse-requests') ? 'active-link' : ''}
+            >
+              See Requests
+            </Link>
           </li>
         </ul>
       </nav>
