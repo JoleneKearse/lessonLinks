@@ -1,8 +1,10 @@
 import { Entity, Column, ManyToOne, JoinColumn } from 'typeorm';
-import { BaseEntity } from '../../utils/base.entity.js';
+import { BaseEntity, BaseDTO } from '../../utils/base.entity.js';
 import { SubjectEntity } from '../subject/subject.entity.js';
 import { SubSubjectEntity } from '../sub-subject/sub-subject.entity.js';
 import { UserEntity } from '../user/user.entity.js';
+import { IsEnum, IsNotEmpty, IsString, IsUUID } from 'class-validator';
+import { IntersectionType } from '@nestjs/mapped-types';
 
 export enum GradeEnum {
   FIRST = '1st',
@@ -27,6 +29,38 @@ export enum FormatEnum {
   EXCEL = 'excel',
   WORD = 'word',
 }
+
+export class NewRequestDTO {
+  @IsNotEmpty()
+  @IsUUID()
+  requestedByUserId: string;
+
+  @IsNotEmpty()
+  @IsEnum(GradeEnum)
+  grade: GradeEnum;
+
+  @IsNotEmpty()
+  @IsUUID()
+  subjectId: string;
+
+  @IsNotEmpty()
+  @IsUUID()
+  subSubjectId: string;
+
+  @IsNotEmpty()
+  @IsString()
+  title: string;
+
+  @IsNotEmpty()
+  @IsString()
+  description: string;
+
+  @IsNotEmpty()
+  @IsEnum(FormatEnum)
+  format: FormatEnum;
+}
+
+export class RequestDTO extends IntersectionType(BaseDTO, NewRequestDTO) {}
 
 @Entity('request')
 export class RequestEntity extends BaseEntity {
