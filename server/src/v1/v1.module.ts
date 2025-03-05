@@ -4,6 +4,7 @@ import { SubSubjectModule } from './sub-subject/sub-subject.module.js';
 import { UserModule } from './user/user.module.js';
 import { UserTypeModule } from './user-type/user-type.module.js';
 import { TagModule } from './tag/tag.module.js';
+import { ResourceModule } from './resource/resource.module.js';
 
 const logger = new Logger('v1Module');
 logger.log('Hitting v1.module');
@@ -15,6 +16,7 @@ logger.log('Hitting v1.module');
     UserModule,
     UserTypeModule,
     TagModule,
+    ResourceModule,
   ],
 })
 export class V1Module {}
