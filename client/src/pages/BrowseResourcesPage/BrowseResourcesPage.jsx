@@ -1,9 +1,10 @@
 import Navigation from '../../components/Navigation/Navigation';
 import './BrowseResourcesPage.css';
+import products from '../../products.json';
 
 function BrowseResourcesPage() {
   // Assuming products is imported from elsewhere or will be fetched
-  const products = []; // Replace with actual data or import
+  // const products = []; // Replace with actual data or import
 
   return (
     <div className="browse-resources-page">
@@ -23,7 +24,9 @@ function BrowseResourcesPage() {
                 <span className="format">{product.format}</span>
                 <span className="resource-type">{product.resourceType}</span>
               </div>
-              <a href={product.link} className="btn">See More</a>
+              <a href={product.link} className="btn">
+                See More
+              </a>
             </div>
           ))}
         </div>
