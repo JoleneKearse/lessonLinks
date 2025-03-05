@@ -33,7 +33,11 @@ export class ResourceService {
     }
 
     if (tagNames && tagNames.length > 0) {
-      const tags = await this.tagService.findOrCreateByNames(tagNames);
+      const normalizedTagNames = tagNames.map((tagName) =>
+        tagName.toLowerCase(),
+      );
+      const tags =
+        await this.tagService.findOrCreateByNames(normalizedTagNames);
       const tagIds = tags.map((tag) => tag.id);
       await this.resourceTagService.createMultiple(resource.id, tagIds);
     }
