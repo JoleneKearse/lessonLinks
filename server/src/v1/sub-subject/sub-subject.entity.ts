@@ -1,4 +1,4 @@
-import { Entity, Column, Unique, ManyToOne, JoinColumn, OneToMany } from 'typeorm';
+import { Entity, Column, Unique, ManyToOne, OneToMany, JoinColumn } from 'typeorm';
 import { BaseDTO, BaseEntity } from '../../utils/base.entity.js';
 import { SubjectEntity } from '../subject/subject.entity.js';
 import { IsNotEmpty, IsString, IsUUID } from 'class-validator';

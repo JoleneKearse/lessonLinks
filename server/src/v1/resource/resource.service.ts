@@ -14,6 +14,10 @@ export class ResourceService {
     private readonly resourceTagService: ResourceTagService,
   ) {}
 
+  async findAll(): Promise<ResourceEntity[]> {
+    return this.resourceRepository.find();
+  }
+
   async create(
     newResourceDTO: NewResourceDTO,
     grades: string[],

@@ -13,6 +13,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 .home-page {
   display: flex;
   flex-direction: column;
@@ -65,4 +71,3 @@ nav {
   padding: 12px;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
 }
-

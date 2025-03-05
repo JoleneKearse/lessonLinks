@@ -1,7 +1,16 @@
 - CSS for resource cards
-- CSS for form
+- CSS for form ✅
+  - Made it responsive for smaller screens ✅
+  - Made all inputs consistent sizing and gaps between each ✅
 - CSS for checkboxes
+- Make nav bar responsive (switch to hidden nav with hamburger icon for mobile)
 - ...see more show and hide description
 - home screen / global css
-- Fix form architecture
-- create search functionality
+- Fix form architecture ✅
+- State variables for all form inputs and convert to json on submit ✅
+- Impose character limit on description ✅
+- Impose grade levels limit on grade levels ✅
+- Add form validation and error handling
+  - error handling for empty fields ✅
+  - Check if inputs are correct type with REGEX
+- create search functionality ?

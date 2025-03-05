@@ -1,16 +1,11 @@
 import PropTypes from 'prop-types';
+import { useState, useEffect } from 'react';
+import './Dropdown.css';
 
-function Dropdown({
-  options,
-  label,
-  multiple,
-  selected,
-  setSelected,
-  status,
-  setStatus,
-  initialTermIsDisabled,
-  setInitialTermIsDisabled,
-}) {
+function Dropdown({ options, label, selected, setSelected, isSubmitted }) {
+  const [status, setStatus] = useState('normal');
+  const [initialTermIsDisabled, setInitialTermIsDisabled] = useState(false);
+
   function handleInput(event) {
     if (event.target.value !== 'none') {
       setSelected(event.target.value);
@@ -20,7 +15,15 @@ function Dropdown({
       setStatus('error');
       throw new Error('This should never happen');
     }
+    console.log('status: ', status);
   }
+
+  useEffect(() => {
+    if (isSubmitted) {
+      if (selected !== 'none') setStatus('normal');
+      else setStatus('error');
+    }
+  }, [isSubmitted, selected]);
 
   return (
     <label htmlFor={`${label}_input`} className="label-on-top">
@@ -30,7 +33,6 @@ function Dropdown({
           id={`${label}_input`}
           value={selected}
           onChange={event => handleInput(event)}
-          multiple={multiple | false}
         >
           <option value="none" disabled={initialTermIsDisabled}>
             {`Select ${label}`}
@@ -54,10 +56,7 @@ Dropdown.propTypes = {
   label: PropTypes.string.isRequired,
   selected: PropTypes.string.isRequired,
   setSelected: PropTypes.func.isRequired,
-  status: PropTypes.string.isRequired,
-  setStatus: PropTypes.func.isRequired,
-  initialTermIsDisabled: PropTypes.bool.isRequired,
-  setInitialTermIsDisabled: PropTypes.func.isRequired,
+  isSubmitted: PropTypes.bool.isRequired,
 };
 
 export default Dropdown;
