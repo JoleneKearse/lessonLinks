@@ -100,21 +100,24 @@ function Form({ formTitle, isARequest }) {
   return (
     <form>
       <h1>{formTitle}</h1>
-      <label>
-        Title your request
-        <input
-          className="title-input"
-          value={title}
-          onChange={() => setTitle(event.target.value)}
-          data-status={titleStatus}
-        ></input>
-        {titleStatus == 'error' && (
-          <p className="error">This field is required.</p>
-        )}
-      </label>
-      <label className="dropdown-header">
-        {' '}
-        Select an option for each dropdown.
+      
+      <div className="form-section">
+        <label>
+          Title your request
+          <input
+            className="title-input"
+            value={title}
+            onChange={(event) => setTitle(event.target.value)}
+            data-status={titleStatus}
+            placeholder="Enter a clear, descriptive title"
+          ></input>
+          {titleStatus == 'error' && (
+            <p className="error">This field is required.</p>
+          )}
+        </label>
+      </div>
+
+      <div className="form-section">
         <div className="dropdown-container">
           <Dropdown
             options={subjects}
@@ -126,11 +129,12 @@ function Form({ formTitle, isARequest }) {
 
           <Dropdown
             options={resourceTypes}
-            label="Resource Type"
+            label="Resource type"
             selected={resourceTypeSelected}
             setSelected={setResourceTypeSelected}
             isSubmitted={isSubmitted}
           />
+
           <Dropdown
             options={formats}
             label="Format"
@@ -139,36 +143,91 @@ function Form({ formTitle, isARequest }) {
             isSubmitted={isSubmitted}
           />
         </div>
-      </label>
-      <fieldset data-status={gradesStatus}>
-        <legend>Select up to 4 Grade Levels</legend>
-        {grades.map(option => (
-          <label key={option}>
-            <input
-              key={option}
-              type="checkbox"
-              label={option}
-              value={option}
-              disabled={gradesDisabled && !gradesSelected.includes(option)}
-              onChange={handleCheckboxChange}
-            />
-            {option}
-          </label>
-        ))}
-        {gradesStatus == 'error' && (
-          <p className="error bottom-right">This field is required.</p>
-        )}
-      </fieldset>
-      <div className="link-and-price">
-        {!isARequest && (
-          <>
+      </div>
+
+      <div className="form-section">
+        <div className="form-group">
+          <label className="dropdown-header">Select up to 4 grade levels</label>
+          <p className="field-helper-text">Choose the appropriate grade levels for your request</p>
+          <fieldset data-status={gradesStatus} className="grades-fieldset">
+            <div className="grade-group">
+              <h4>Elementary School</h4>
+              {grades.filter(g => ['1st', '2nd', '3rd', '4th', '5th'].includes(g)).map(option => (
+                <label key={option} className="grade-checkbox">
+                  <input
+                    type="checkbox"
+                    value={option}
+                    disabled={gradesDisabled && !gradesSelected.includes(option)}
+                    onChange={handleCheckboxChange}
+                  />
+                  {option}
+                </label>
+              ))}
+            </div>
+            
+            <div className="grade-group">
+              <h4>Middle School</h4>
+              {grades.filter(g => ['6th', '7th', '8th'].includes(g)).map(option => (
+                <label key={option} className="grade-checkbox">
+                  <input
+                    type="checkbox"
+                    value={option}
+                    disabled={gradesDisabled && !gradesSelected.includes(option)}
+                    onChange={handleCheckboxChange}
+                  />
+                  {option}
+                </label>
+              ))}
+            </div>
+            
+            <div className="grade-group">
+              <h4>High School</h4>
+              {grades.filter(g => ['9th', '10th', '11th', '12th'].includes(g)).map(option => (
+                <label key={option} className="grade-checkbox">
+                  <input
+                    type="checkbox"
+                    value={option}
+                    disabled={gradesDisabled && !gradesSelected.includes(option)}
+                    onChange={handleCheckboxChange}
+                  />
+                  {option}
+                </label>
+              ))}
+            </div>
+            
+            <div className="grade-group">
+              <h4>College</h4>
+              {grades.filter(g => ['Undergraduate'].includes(g)).map(option => (
+                <label key={option} className="grade-checkbox">
+                  <input
+                    type="checkbox"
+                    value={option}
+                    disabled={gradesDisabled && !gradesSelected.includes(option)}
+                    onChange={handleCheckboxChange}
+                  />
+                  {option}
+                </label>
+              ))}
+            </div>
+            
+            {gradesStatus == 'error' && (
+              <p className="error bottom-right">This field is required.</p>
+            )}
+          </fieldset>
+        </div>
+      </div>
+
+      {!isARequest && (
+        <div className="form-section">
+          <div className="link-and-price">
             <label>
               {' '}
-              Link to Resource
+              Link to resource
+              <p className="field-helper-text">Add a valid URL to your resource</p>
               <input
                 type="link"
                 className="link-input"
-                placeholder="Link to resource"
+                placeholder="https://example.com/resource"
                 value={link}
                 onChange={event => setLink(event.target.value)}
               ></input>
@@ -179,6 +238,7 @@ function Form({ formTitle, isARequest }) {
             <label>
               {' '}
               Price
+              <p className="field-helper-text">Enter the price in USD</p>
               <input
                 type="number"
                 className="price-input"
@@ -190,43 +250,40 @@ function Form({ formTitle, isARequest }) {
                 <p className="error">This field is required.</p>
               )}
             </label>
-          </>
-        )}
+          </div>
+        </div>
+      )}
+
+      <div className="form-section">
+        <label>
+          {isARequest ? 'Describe your request' : 'Describe your resource'}
+          <p className="field-helper-text">Provide detailed information to help others understand your needs (max 1500 characters)</p>
+          <textarea
+            className="description-input"
+            onInput={handleDescriptionInput}
+            value={description}
+            placeholder="Enter a detailed description"
+          >
+            {' '}
+          </textarea>
+          <div> {`${description.length}/1500`}</div>
+        </label>
       </div>
 
-      <label>
-        {' '}
-        {isARequest ? 'Describe your request' : 'Describe your resource'}
-        <textarea
-          className="description-input"
-          onInput={handleDescriptionInput}
-          value={description}
-        >
+      <div className="form-section">
+        <label>
           {' '}
-        </textarea>
-        <div> {`${description.length}/1500`}</div>
-      </label>
-      {isARequest ? (
-        <label>
-          Provide your email to get updates on your request.
+          {isARequest 
+            ? 'Provide your email to get updates on your request' 
+            : 'Provide your email to get updates on your resource'}
           <input
             type="email"
-            placeholder="Email"
+            placeholder="Enter your email address"
             value={email}
-            onChange={() => setEmail(event.target.value)}
+            onChange={(event) => setEmail(event.target.value)}
           ></input>
         </label>
-      ) : (
-        <label>
-          Provide your email to get updates on your resource.
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={() => setEmail(event.target.value)}
-          ></input>
-        </label>
-      )}
+      </div>
 
       <button type="submit" onClick={handleSubmit}>
         Submit
@@ -234,6 +291,7 @@ function Form({ formTitle, isARequest }) {
     </form>
   );
 }
+
 Form.propTypes = {
   formTitle: PropTypes.string.isRequired,
   isARequest: PropTypes.bool.isRequired,

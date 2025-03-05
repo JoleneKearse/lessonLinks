@@ -7,7 +7,7 @@ function BrowseRequestsPage() {
     <div className="browse-requests-page">
       <Navigation />
       <div className="container">
-        <h1>Browse Requests</h1>
+        <h1>See Requests</h1>
 
         {/* Add request cards or other content here */}
         <div className="requests-container">

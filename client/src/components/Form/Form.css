@@ -1,27 +1,31 @@
 /* Form component styles */
 
 .dropdown-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 20px;
-  column-gap: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
   width: 100%;
+  margin-bottom: 25px;
 }
 
 .dropdown-header {
-  font-size: 1.1rem;
+  font-size: 1rem;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--dark);
 }
 
 .label-on-top {
   font-size: 1rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--dark);
 }
 
 .title-input {
   width: 100%;
-  padding: 0.3rem;
+  padding: 0.5rem 0.8rem;
   font-size: 1.5rem;
-  height: 30px;
   background-color: var(--gray-bg);
   color: var(--dark);
 }
@@ -31,13 +35,23 @@ select {
   padding: 0.5rem;
   background-color: var(--gray-bg);
   color: var(--dark);
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.7rem center;
+  background-size: 1em;
+  padding-right: 2.5rem;
 }
 
 .error {
   color: var(--error-red);
+  font-size: 0.9rem;
+  margin-top: 5px;
 }
 
 input[data-status='error'],
+select[data-status='error'],
+textarea[data-status='error'],
 fieldset[data-status='error'] {
   border: 2px solid var(--error-red);
 }
@@ -51,18 +65,23 @@ fieldset[data-status='error'] {
 .description-input {
   width: 100%;
   height: 25ch;
-  overflow: scroll;
-  text-wrap: wrap;
-  resize: none;
+  padding: 0.8rem;
+  font-size: 1.1rem;
   background-color: var(--gray-bg);
   color: var(--dark);
+  border: 1px solid var(--pale-grey);
+  border-radius: 6px;
+  overflow-y: auto;
+  text-wrap: wrap;
+  resize: none;
+  transition: all 0.3s ease;
+  font-family: var(--base-font);
 }
 
 input[type='email'] {
   width: 100%;
-  padding: 0.3rem;
-  font-size: 1.5rem;
-  height: 30px;
+  padding: 0.5rem 0.8rem;
+  font-size: 1.1rem;
   background-color: var(--gray-bg);
   color: var(--dark);
 }
@@ -77,15 +96,12 @@ input[type='email'] {
 .price-input {
   display: grid;
   width: 100%;
-  height: 30px;
 }
 
 .link-input {
   display: flex;
-  flex-grow: 1;
   gap: 20px;
   width: 100%;
-  height: 30px;
 }
 
 .link-input input {
@@ -93,15 +109,17 @@ input[type='email'] {
 }
 
 fieldset {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  padding-inline: 20px;
-  padding-block: 10px;
+  padding: 15px 20px;
+  border-radius: 6px;
+  border: 1px solid var(--pale-grey);
   position: relative;
+  background-color: var(--gray-bg);
 }
 
 fieldset > legend {
-  grid-column: span 3;
+  padding: 0 10px;
+  font-weight: 500;
+  color: var(--dark);
 }
 
 fieldset > input[type='checkbox'] {
@@ -115,14 +133,46 @@ input {
 
 form {
   display: grid;
-  gap: 20px;
+  grid-template-columns: 1fr;
+  gap: 40px;
   width: 100%;
   margin-top: 50px;
+  background-color: var(--pure-white);
+  padding: 50px;
+  border-radius: 12px;
+  box-shadow: 0 10px 10px 5px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+form:hover {
+  box-shadow: 0 15px 15px 8px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px);
+}
+
+form h1 {
+  color: var(--dark);
+  font-size: 2.5rem;
+  margin-bottom: 25px;
+  font-weight: 800;
+  text-align: center;
 }
 
 form > button {
   width: 100%;
-  margin: 0px;
+  margin-top: 0;
+  background-color: var(--bright-bg);
+  color: var(--pure-white);
+  padding: 15px 25px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+form > button:hover {
+  background-color: #3645d9; /* Slightly darker shade of bright-bg */
+  transform: scale(1.02);
 }
 
 @media (max-width: 600px) {
@@ -132,6 +182,7 @@ form > button {
 
   .link-and-price {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
 
   .link-input {
@@ -139,12 +190,394 @@ form > button {
     grid-template-columns: 1fr;
   }
 
-  .price-input {
-    display: grid;
-    grid-template-columns: 1fr;
-  }
-
   fieldset {
     grid-template-columns: 1fr;
+    padding: 15px;
+  }
+}
+
+/* Common form field styling */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="url"],
+select,
+.title-input,
+.link-input input {
+  width: 100%;
+  height: 45px;
+  padding: 0.5rem 0.8rem;
+  font-size: 1.1rem;
+  background-color: var(--gray-bg);
+  color: var(--dark);
+  border: 1px solid var(--pale-grey);
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+/* Active/Focus state for form fields */
+input:focus,
+select:focus,
+textarea:focus,
+.select-container:focus-within select {
+  outline: none;
+  border-color: var(--dark-grey);
+  border-width: 2px;
+  transition: all 0.2s ease;
+}
+
+/* Additional styling for the active dropdown */
+.select-container:focus-within {
+  z-index: 1; /* Ensures the focused dropdown appears above others */
+}
+
+/* Active state for checkboxes */
+input[type="checkbox"]:focus {
+  outline: 2px solid var(--dark-grey);
+}
+
+/* Active fieldset */
+fieldset:focus-within {
+  border-color: var(--dark-grey);
+}
+
+/* Consistent label styling */
+label,
+.dropdown-header,
+.label-on-top,
+fieldset > legend,
+.form-group > p,
+.field-label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--dark);
+  margin-bottom: 2px;
+  display: block;
+  background-color: transparent;
+  width: auto;
+  text-align: left;
+  padding: 0;
+}
+
+/* Specific styling for fieldset legend */
+fieldset > legend {
+  padding: 0 10px;
+  background-color: transparent;
+  width: auto;
+  position: relative;
+  margin-bottom: 0;
+}
+
+/* Remove any full-width background styling that might be applied */
+fieldset,
+.dropdown-container,
+.form-section {
+  position: relative;
+}
+
+fieldset::before,
+.form-section::before {
+  display: none;
+}
+
+/* Adjust any label containers for consistent spacing */
+.form-group,
+.input-group,
+.field-container {
+  margin-bottom: 15px;
+}
+
+/* Fix spacing before submit button */
+form > *:last-child:not(button) {
+  margin-bottom: 15px;
+}
+
+/* Style for helper text to reduce visual hierarchy - consistent across all instances */
+.field-helper-text {
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.6); /* Reduced opacity */
+  margin-top: 2px;
+  margin-bottom: 8px;
+  font-style: normal; /* Remove italics */
+}
+
+/* Ensure all helper texts follow the same pattern */
+.form-section label p:not(.error),
+.form-group p:not(.error),
+.field-helper-text {
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.6);
+  margin-top: 2px;
+  margin-bottom: 8px;
+  font-style: normal;
+}
+
+/* Ensure the main labels maintain proper hierarchy */
+.dropdown-header,
+form label:not([for]),
+.form-section > label:first-child {
+  font-weight: 600;
+  color: var(--dark);
+  font-size: 1rem;
+}
+
+/* Form component styles - Standardize spacing */
+.form-group,
+.dropdown-container,
+.link-and-price {
+  margin-bottom: 25px;
+}
+
+/* Ensure all form sections use the same spacing */
+form > label,
+form > div,
+form > .form-group {
+  margin-bottom: 0;  /* Remove additional margins that could cause inconsistency */
+}
+
+/* Fix spacing for textarea section */
+label .description-input {
+  margin-bottom: 8px;
+}
+
+/* Ensure link-and-price has consistent spacing */
+.link-and-price {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  gap: 40px;
+}
+
+/* Standardize all form element spacing */
+form > *,
+.dropdown-container > *,
+.form-group,
+.link-and-price > * {
+  margin-bottom: 25px;
+}
+
+/* Remove the last child's bottom margin to avoid extra space */
+form > *:last-child,
+.dropdown-container > *:last-child,
+.form-group:last-child,
+.link-and-price > *:last-child {
+  margin-bottom: 0;
+}
+
+/* Fix the form-group spacing specifically */
+.form-group {
+  margin-top: 0;
+  margin-bottom: 25px;
+}
+
+/* Standardize label containers */
+form > label,
+.link-and-price label {
+  display: block;
+  margin-bottom: 25px;
+}
+
+/* Reset all other conflicting spacing */
+.dropdown-header,
+.label-on-top,
+fieldset > legend,
+form-group > p {
+  margin-bottom: 8px; /* Only small spacing for these inner elements */
+}
+
+/* RESET ALL MARGINS/PADDING FOR FORM ELEMENTS */
+form > *,
+.dropdown-container,
+.form-group,
+.link-and-price,
+form > label,
+.dropdown-container > *,
+.link-and-price > * {
+  margin: 0;
+  padding: 0;
+}
+
+/* SET CONSISTENT SPACING USING FORM GRID */
+form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px; /* Increased gap for better visibility */
+  width: 100%;
+  margin-top: 50px;
+  background-color: var(--pure-white);
+  padding: 50px;
+  border-radius: 12px;
+  box-shadow: 0 10px 10px 5px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* SEPARATE STYLING FOR INTERNAL SPACING */
+.dropdown-container {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  width: 100%;
+}
+
+/* RESET ANY POTENTIAL CONFLICTING STYLES */
+.dropdown-container + .form-group,
+.form-group + .link-and-price,
+.link-and-price + label,
+.dropdown-container + label {
+  margin-top: 0;
+}
+
+/* ONLY APPLY INTERNAL SPACING WHERE NEEDED */
+.dropdown-header,
+.label-on-top,
+fieldset > legend,
+form-group > p {
+  margin-bottom: 8px;
+}
+
+/* MAKE SUBMIT BUTTON MARGIN CONSISTENT */
+form > button {
+  margin-top: 0;
+}
+
+/* Target the specific spacing issue with the description section */
+.form-group + label,
+.dropdown-container + label {
+  margin-top: 0; /* Ensure no extra top margin */
+}
+
+/* Specific fix for the description section */
+form > label:has(.description-input) {
+  margin-top: 0; /* Reset any top margin */
+}
+
+/* Ensure that all direct children of form have exactly the same spacing */
+form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px; /* Consistent gap */
+}
+
+/* Ensure form elements don't introduce internal margins that affect layout */
+form > *,
+.dropdown-container,
+.form-group,
+.link-and-price {
+  margin: 0;
+}
+
+/* Fix potential spacing inside labels */
+label .description-input {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+/* New consistent form section styling */
+.form-section {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px; /* Consistent gap between all sections */
+  width: 100%;
+  margin-top: 50px;
+  background-color: var(--pure-white);
+  padding: 50px;
+  border-radius: 12px;
+  box-shadow: 0 10px 10px 5px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Remove any nested margins that might cause inconsistency */
+.form-section > *,
+.dropdown-container,
+.form-group,
+.link-and-price {
+  margin: 0;
+}
+
+/* Standardize spacing between labels and helper text - use the tighter spacing */
+.dropdown-header,
+.label-on-top,
+fieldset > legend,
+form-group > p,
+.field-label {
+  margin-bottom: 2px; /* Reduced from 8px to match your preferred spacing */
+}
+
+/* Ensure consistent spacing between all label text and helper text */
+label + .field-helper-text,
+.dropdown-header + .field-helper-text,
+.form-section label + p:not(.error) {
+  margin-top: 2px;
+}
+
+/* Also standardize spacing after helper text */
+.field-helper-text,
+.form-section p:not(.error),
+.form-group p:not(.error) {
+  margin-bottom: 8px;
+}
+
+/* Styling for grade level groups */
+.grades-fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Space between groups */
+  padding: 20px;
+}
+
+.grade-group {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 5px;
+  padding-bottom: 12px; /* Add padding at bottom */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Subtle separator line */
+}
+
+/* Remove border from last group */
+.grade-group:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.grade-group h4 {
+  width: 100%;
+  margin: 0 0 2px 0; /* Further reduced from 3px to 2px */
+  font-size: 0.95rem;
+  color: var(--dark);
+  font-weight: 600;
+}
+
+.grade-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: normal;
+  min-width: 80px;
+}
+
+/* Make the checkbox label explicitly not bold */
+.grade-checkbox span,
+.grade-checkbox {
+  font-weight: 400; /* Normal weight */
+}
+
+@media (max-width: 600px) {
+  .grades-fieldset {
+    padding: 15px;
+  }
+  
+  .grade-group {
+    gap: 10px;
+    padding-bottom: 10px;
   }
 }
