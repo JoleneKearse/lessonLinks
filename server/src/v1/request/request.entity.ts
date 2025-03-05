@@ -76,15 +76,33 @@ export class RequestEntity extends BaseEntity {
   @Column({ type: 'enum', enum: FormatEnum, nullable: false })
   format: FormatEnum;
 
-  @ManyToOne(() => SubjectEntity, (subject) => subject.id, { onDelete: 'RESTRICT', nullable: false })
+  @ManyToOne(() => SubjectEntity, (subject) => subject.id, {
+    onDelete: 'RESTRICT',
+    nullable: false,
+  })
   @JoinColumn({ name: 'subject_id' })
   subject: Promise<SubjectEntity>;
 
-  @ManyToOne(() => SubSubjectEntity, (subSubject) => subSubject.id, { onDelete: 'RESTRICT', nullable: false })
+  @Column({ name: 'subject_id', type: 'uuid' })
+  subjectId: string;
+
+  @ManyToOne(() => SubSubjectEntity, (subSubject) => subSubject.id, {
+    onDelete: 'RESTRICT',
+    nullable: false,
+  })
   @JoinColumn({ name: 'sub_subject_id' })
   subSubject: Promise<SubSubjectEntity>;
 
-  @ManyToOne(() => UserEntity, (user) => user.id, { onDelete: 'CASCADE', nullable: false })
+  @Column({ name: 'sub_subject_id', type: 'uuid' })
+  subSubjectId: string;
+
+  @ManyToOne(() => UserEntity, (user) => user.id, {
+    onDelete: 'CASCADE',
+    nullable: false,
+  })
   @JoinColumn({ name: 'requested_by_user_id' })
   user: Promise<UserEntity>;
+
+  @Column({ name: 'requested_by_user_id', type: 'uuid' })
+  requestedByUserId: string;
 }
