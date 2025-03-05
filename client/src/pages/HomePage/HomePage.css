@@ -9,20 +9,32 @@
   background: var(--light);
   color: var(--dark);
   height: 100vh;
-  min-height: 700px;
+  min-height: 600px;
   max-height: 800px;
   position: relative;
   overflow: hidden;
   display: flex;
   align-items: center;
+  padding: 0 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .hero-content {
   display: flex;
   align-items: center;
-  padding: 80px 0;
+  padding: 60px 0;
   margin-top: 40px;
   width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow-x: hidden;
+}
+
+.hero-text {
+  width: 100%;
+  max-width: 100%;
 }
 
 .hero h1 {
@@ -30,6 +42,7 @@
   font-weight: 800;
   margin-bottom: 20px;
   line-height: 1.2;
+  word-wrap: break-word;
 }
 
 .hero p {
@@ -37,6 +50,7 @@
   margin-bottom: 60px;
   opacity: 0.9;
   width: 100%;
+  max-width: 800px;
 }
 
 .hero-buttons {
@@ -75,6 +89,7 @@
   font-size: 2.5rem;
   color: var(--dark);
   margin-bottom: 15px;
+  line-height: 1.2
 }
 
 .section-title p {
@@ -125,8 +140,9 @@
   display: block !important;
 }
 
+/* Update the request cards for better responsiveness */
 .request-card, .see-all-card {
-  flex: 0 0 500px;
+  flex: 0 0 500px; /* Default size for larger screens */
   width: 500px;
   opacity: 0.7;
   transition: opacity 0.3s ease, transform 0.3s ease;
@@ -145,6 +161,9 @@
   transition: transform 0.3s ease;
   text-decoration: none;
   color: var(--dark);
+  display: flex;
+  flex-direction: column;
+  height: 340px; /* Set a fixed height for all cards */
 }
 
 .request-card:hover {
@@ -162,6 +181,9 @@
 
 .request-card-body {
   padding: 20px 30px;
+  display: flex;
+  flex-direction: column;
+  flex: 1; /* Take remaining space */
 }
 
 .request-card h3 {
@@ -179,12 +201,17 @@
 
 .request-description {
   margin-bottom: 20px;
+  overflow-y: auto; /* Allow scrolling if content is too long */
+  flex: 1; /* Take available space but allow CTA to be visible */
+  max-height: 150px; /* Limit height so CTA stays visible */
 }
 
 .request-cta {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-top: 15px; /* Add some spacing from the description */
+  border-top: 1px solid var(--pale-grey); /* Optional: visual separator */
 }
 
 .request-price {
@@ -318,10 +345,6 @@
   align-items: center;
 }
 
-.step-content:hover {
-  transform: scale(1.02);
-}
-
 .step-number {
   width: 50px;
   height: 50px;
@@ -340,10 +363,15 @@
 .process-step h3 {
   margin-bottom: 10px;
   color: var(--dark);
+  text-align: center;
 }
 
 .process-step p {
   color: var(--dark);
+  text-align: center;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
 }
 
 .process-connector {
@@ -371,9 +399,7 @@
 }
 
 .benefits-card {
-  flex: 1;
-  min-width: 300px;
-  max-width: 550px;
+  width: 400px;
   background: var(--light);
   border-radius: 12px;
   margin: 10px; 
@@ -412,6 +438,7 @@
 
 .card-header h3 {
   font-size: 1.8rem;
+  line-height: 1.2;
   margin-bottom: 15px;
   color: var(--dark);
   display: flex;
@@ -501,15 +528,23 @@
     align-items: center;
   }
   
+  .section-title h2 {
+    font-size: 2.0rem;
+  }
+  
+  .card-header h3 {
+    font-size: 1.6rem;
+  }
+
   .benefits-card {
-    width: 100%;
+    width: 380px;
   }
 }
 
 /* Floating Action Button */
 .floating-request-btn {
   position: fixed;
-  bottom: 30px;
+  bottom: 50px;
   right: 30px;
   background-color: var(--bright-bg);
   color: var(--pure-white);
@@ -518,7 +553,7 @@
   text-decoration: none;
   font-weight: bold;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
-  z-index: 1000;
+  z-index: 800;
   transition: all 0.3s ease;
 }
 
@@ -532,20 +567,41 @@
 }
 
 /* Responsive Styles */
+@media (max-width: 1200px) {
+  .hero h1 {
+    font-size: 4.5rem;
+  }
+  
+  .hero p {
+    font-size: 1.3rem;
+  }
+}
+
 @media (max-width: 992px) {
   .hero-content {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 60px;
   }
   
   .hero {
-    padding-top: 100px;
+    min-height: 550px;
+    padding: 80px 0 60px 0;
+    height: auto;
+    display: block;
+  }
+  
+  .hero h1 {
+    font-size: 3.8rem;
+  }
+  
+  .hero p {
+    font-size: 1.25rem;
+    margin-bottom: 40px;
   }
   
   .hero-image {
-    display: none;
-  }
-  
-  .process-connector {
     display: none;
   }
   
@@ -553,21 +609,51 @@
     flex-direction: column;
     align-items: center;
     gap: 30px;
+    position: relative;
+  }
+  
+  .process-step {
+    width: 90vw;
+    height: 240px;
+    max-width: 400px;
+  }
+  
+  /* Update connector to be vertical */
+  .process-connector {
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    right: auto;
+    width: 2px;
+    height: auto;
+    transform: translateX(-50%);
   }
   
   .request-card,
   .see-all-card {
-    flex: 0 0 280px;
+    flex: 0 0 500px; 
+    width: 500px;
   }
 }
 
 @media (max-width: 768px) {
-  .hero h1 {
-    font-size: 2.5rem;
+  .hero {
+    min-height: 500px;
+    padding: 90px 0 60px 0;
   }
   
-  .hero {
-    padding-top: 90px;
+  .hero h1 {
+    font-size: 3rem;
+  }
+  
+  .hero p {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+  }
+  
+  .hero-content {
+    padding: 40px 0;
+    margin-top: 40px;
   }
   
   .nav-links {
@@ -585,6 +671,64 @@
   
   .request-card,
   .see-all-card {
-    flex: 0 0 260px;
+    flex: 0 0 500px; /* Even smaller on tablets */
+    width: 500px;
   }
+  
+  .floating-request-btn {
+    display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero {
+    min-height: 450px;
+    padding: 100px 0 60px 0;
+  }
+  
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+  }
+  
+  .hero-content {
+    padding: 30px 0;
+    margin-top: 30px;
+  }
+  
+  .request-card,
+  .see-all-card {
+    flex: 0 0 85vw; /* Responsive width on mobile - 85% of viewport */
+    width: 85vw;
+    min-width: 260px; /* Minimum width to prevent cards from being too small */
+  }
+
+  .benefits-card {
+    width: 90%;
+    max-width: 380px;
+  }
+  
+  .card-header h3 {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+  
+  .hero p {
+    font-size: 1rem;
+  }
+}
+
+/* Add this to ensure the entire page doesn't have horizontal overflow */
+.homepage {
+  overflow-x: hidden;
+  width: 100%;
 }
