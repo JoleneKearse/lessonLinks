@@ -111,6 +111,33 @@ nav {
   opacity: 1.0;
 }
 
+/* Active link styles */
+.nav-links a.active-link {
+  position: relative;
+  opacity: 1;
+}
+
+.nav-links a.active-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--pure-white);
+}
+
+/* Remove border from bordered-link when active and add overlay effect */
+.nav-links a.bordered-link.active-link {
+  background-color: var(--pure-white);
+  color: var(--bright-bg);
+  opacity: 1;
+}
+
+.nav-links a.bordered-link.active-link::after {
+  display: none; /* Remove the underline for the bordered link */
+}
+
 /* Media queries for responsive design */
 @media screen and (max-width: 992px) {
   nav {
@@ -216,6 +243,17 @@ nav {
   
   .logo-img {
     height: 40px;
+  }
+  
+  .nav-links a.active-link::after {
+    bottom: 5px; 
+    height: 3px;
+  }
+  
+  /* Adjust active bordered link on mobile */
+  .nav-links a.bordered-link.active-link {
+    background-color: var(--pure-white);
+    color: var(--dark);
   }
 }
 
