@@ -10,6 +10,9 @@ export class ResourceGradeEntity extends BaseEntity {
 
   @Column({ type: 'varchar', length: 50, nullable: false })
   grade: string;
+
+  @Column({ name: 'resource_id', type: 'uuid' })
+  resourceId: string;
 }
 
 export class NewResourceGradeDTO {

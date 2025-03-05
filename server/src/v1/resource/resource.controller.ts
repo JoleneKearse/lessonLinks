@@ -6,6 +6,11 @@ import { NewResourceDTO, ResourceEntity } from './resource.entity.js';
 export class ResourceController {
   constructor(private readonly resourceService: ResourceService) {}
 
+  @Get()
+  async findAll(): Promise<ResourceEntity[]> {
+    return this.resourceService.findAll();
+  }
+
   @Post()
   async create(
     @Body('newResourceDTO') newResourceDTO: NewResourceDTO,
@@ -13,10 +18,5 @@ export class ResourceController {
     @Body('tags') tags: string[],
   ): Promise<ResourceEntity> {
     return await this.resourceService.create(newResourceDTO, grades, tags);
-  }
-
-  @Get()
-  async findAll(): Promise<ResourceEntity[]> {
-    return this.resourceService.findAll();
   }
 }

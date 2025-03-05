@@ -1,11 +1,5 @@
 import { Entity, Column, ManyToOne, OneToMany, JoinColumn } from 'typeorm';
-import {
-  IsNotEmpty,
-  IsString,
-  IsNumber,
-  IsOptional,
-  IsArray,
-} from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 import { IntersectionType } from '@nestjs/mapped-types';
 import { BaseEntity, BaseDTO } from '../../utils/base.entity.js';
 import { SubjectEntity } from '../subject/subject.entity.js';
@@ -32,6 +26,14 @@ export class NewResourceDTO {
   @IsNotEmpty()
   @IsString()
   subSubjectId: string;
+
+  @IsOptional()
+  @IsString()
+  price: string;
+
+  @IsNotEmpty()
+  @IsString()
+  link: string;
 }
 
 export class ResourceDTO extends IntersectionType(BaseDTO, NewResourceDTO) {}
@@ -48,14 +50,14 @@ export class ResourceEntity extends BaseEntity {
   description: string;
 
   @Column({ type: 'varchar', length: 10, nullable: true })
-  price: string;  //  Could be free or include country code and currency symbol
+  price: string; //  Could be free or include country code and currency symbol
 
   @Column({ type: 'varchar', nullable: false })
   link: string;
 
   @ManyToOne(() => SubjectEntity, (subject) => subject.resources, {
-    onDelete: 'RESTRICT', 
-    nullable: false, 
+    onDelete: 'RESTRICT',
+    nullable: false,
   })
   @JoinColumn({ name: 'subject_id' })
   subject: Promise<SubjectEntity>;
