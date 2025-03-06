@@ -1,28 +1,41 @@
 import Navigation from '../../components/Navigation/Navigation';
 import './BrowseRequestsPage.css';
 import products from '../../products.json';
+import { useState, useEffect } from 'react';
 
 function BrowseRequestsPage() {
+  const [requests, setRequests] = useState([]);
+
+  useEffect(() => {
+    fetch('https://lessonlinksbackend.onrender.com/request', {
+      method: 'GET',
+    })
+      .then(response => response.json())
+      .then(data => setRequests(data))
+      .catch(error => console.error('Error fetching requests:', error));
+  }, []);
+
   return (
     <div className="browse-requests-page">
       <Navigation />
       <div className="container">
         <h1>See Requests</h1>
-
-        {/* Add request cards or other content here */}
         <div className="requests-container">
+          {requests.length === 0 && (
+            <p className="no-requests">Requests will appear here!</p>
+          )}
           <div className="container">
             <div className="resource-list">
-              {products.map(product => (
-                <div key={product.id} className="product-card">
-                  <h2>{product.title}</h2>
-                  <p>{product.description}</p>
+              {requests.map(request => (
+                <div key={request.id} className="product-card">
+                  <h2>{request.title}</h2>
+                  <p>{request.description}</p>
                   <div className="product-details">
-                    <span className="grade">{product.grade}</span>
-                    <span className="subject">{product.subject}</span>
-                    <span className="format">{product.format}</span>
+                    <span className="grade">{request.grade}</span>
+                    <span className="subject">{request.subject}</span>
+                    <span className="format">{request.format}</span>
                     <span className="resource-type">
-                      {product.resourceType}
+                      {request.resourceType}
                     </span>
                   </div>
                   <a href="/submit" className="btn btn-primary">
