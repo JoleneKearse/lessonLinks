@@ -50,8 +50,6 @@
   line-height: 1.6;
   color: var(--dark-text);
   margin-bottom: 0;
-  padding-bottom: 30px;
-  border-bottom: 1px solid var(--dark);
 }
 
 .top-container {
@@ -121,28 +119,9 @@
 /* New container for format and more info link */
 .format-info-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   margin-top: 15px;
-}
-
-/* Format item styling */
-.format-item {
-  background-color: transparent;
-  padding: 0;
-}
-
-.format-item .metadata-label {
-  font-size: 0.9rem;
-  font-weight: 400;
-  color: var(--dark-text);
-  opacity: 0.8;
-}
-
-.format-item .metadata-value {
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--dark-text);
 }
 
 /* More info link styling */
