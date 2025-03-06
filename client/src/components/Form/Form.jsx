@@ -31,7 +31,7 @@ function Form({ formTitle, isARequest }) {
     } else {
       setDescription(input.substring(0, 1500));
     }
-  };
+  }
 
   function handleCheckboxChange(event) {
     if (event.target.checked && gradesSelected.length < 4) {
@@ -47,8 +47,8 @@ function Form({ formTitle, isARequest }) {
         gradesSelected.filter(grade => grade !== event.target.value)
       );
       setGradesDisabled(false);
-    } 
-  };
+    }
+  }
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -72,19 +72,27 @@ function Form({ formTitle, isARequest }) {
       const newRequest = {
         title: title,
         subject: subjectSelected,
-        grades: gradesSelected,                     // String
+        grades: gradesSelected, // String
         resourceType: resourceTypeSelected,
         format: formatSelected,
         description: description,
         email: email,
       };
-      console.log(newRequest);
-      console.log(JSON.stringify(newRequest));
+      fetch('https://https://lessonlinksbackend.onrender.com/request', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newRequest),
+      })
+        .then(response => response.json())
+        .then(data => console.log('Request created:', data))
+        .catch(error => console.error('Error creating request:', error));
     } else {
       const newResource = {
         title: title,
         subject: subjectSelected,
-        grades: gradesSelected,                    // Array of strings
+        grades: gradesSelected, // Array of strings
         resourceType: resourceTypeSelected,
         format: formatSelected,
         description: description,
@@ -92,22 +100,30 @@ function Form({ formTitle, isARequest }) {
         price: price,
         email: email,
       };
-      console.log(newResource);
-      console.log(JSON.stringify(newResource));
+      fetch('https://https://lessonlinksbackend.onrender.com/resource', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newResource),
+      })
+        .then(response => response.json())
+        .then(data => console.log('Resource created:', data))
+        .catch(error => console.error('Error creating resource:', error));
     }
-  };
+  }
 
   return (
     <form>
       <h1>{formTitle}</h1>
-      
+
       <div className="form-section">
         <label>
           Title your request
           <input
             className="title-input"
             value={title}
-            onChange={(event) => setTitle(event.target.value)}
+            onChange={event => setTitle(event.target.value)}
             data-status={titleStatus}
             placeholder="Enter a clear, descriptive title"
           ></input>
@@ -148,52 +164,66 @@ function Form({ formTitle, isARequest }) {
       <div className="form-section">
         <div className="form-group">
           <label className="dropdown-header">Select up to 4 grade levels</label>
-          <p className="field-helper-text">Choose the appropriate grade levels for your request</p>
+          <p className="field-helper-text">
+            Choose the appropriate grade levels for your request
+          </p>
           <fieldset data-status={gradesStatus} className="grades-fieldset">
             <div className="grade-group">
               <h4>Elementary School</h4>
-              {grades.filter(g => ['1st', '2nd', '3rd', '4th', '5th'].includes(g)).map(option => (
-                <label key={option} className="grade-checkbox">
-                  <input
-                    type="checkbox"
-                    value={option}
-                    disabled={gradesDisabled && !gradesSelected.includes(option)}
-                    onChange={handleCheckboxChange}
-                  />
-                  <span>{option}</span>
-                </label>
-              ))}
+              {grades
+                .filter(g => ['1st', '2nd', '3rd', '4th', '5th'].includes(g))
+                .map(option => (
+                  <label key={option} className="grade-checkbox">
+                    <input
+                      type="checkbox"
+                      value={option}
+                      disabled={
+                        gradesDisabled && !gradesSelected.includes(option)
+                      }
+                      onChange={handleCheckboxChange}
+                    />
+                    <span>{option}</span>
+                  </label>
+                ))}
             </div>
-            
+
             <div className="grade-group">
               <h4>Middle School</h4>
-              {grades.filter(g => ['6th', '7th', '8th'].includes(g)).map(option => (
-                <label key={option} className="grade-checkbox">
-                  <input
-                    type="checkbox"
-                    value={option}
-                    disabled={gradesDisabled && !gradesSelected.includes(option)}
-                    onChange={handleCheckboxChange}
-                  />
-                  <span>{option}</span>
-                </label>
-              ))}
+              {grades
+                .filter(g => ['6th', '7th', '8th'].includes(g))
+                .map(option => (
+                  <label key={option} className="grade-checkbox">
+                    <input
+                      type="checkbox"
+                      value={option}
+                      disabled={
+                        gradesDisabled && !gradesSelected.includes(option)
+                      }
+                      onChange={handleCheckboxChange}
+                    />
+                    <span>{option}</span>
+                  </label>
+                ))}
             </div>
-            
+
             <div className="grade-group">
               <h4>High School</h4>
-              {grades.filter(g => ['9th', '10th', '11th', '12th'].includes(g)).map(option => (
-                <label key={option} className="grade-checkbox">
-                  <input
-                    type="checkbox"
-                    value={option}
-                    disabled={gradesDisabled && !gradesSelected.includes(option)}
-                    onChange={handleCheckboxChange}
-                  />
-                  <span>{option}</span>
-                </label>
-              ))}
-            </div>     
+              {grades
+                .filter(g => ['9th', '10th', '11th', '12th'].includes(g))
+                .map(option => (
+                  <label key={option} className="grade-checkbox">
+                    <input
+                      type="checkbox"
+                      value={option}
+                      disabled={
+                        gradesDisabled && !gradesSelected.includes(option)
+                      }
+                      onChange={handleCheckboxChange}
+                    />
+                    <span>{option}</span>
+                  </label>
+                ))}
+            </div>
             {gradesStatus == 'error' && (
               <p className="error bottom-right">This field is required.</p>
             )}
@@ -207,7 +237,9 @@ function Form({ formTitle, isARequest }) {
             <label>
               {' '}
               Link to resource
-              <p className="field-helper-text">Add a valid URL to your resource</p>
+              <p className="field-helper-text">
+                Add a valid URL to your resource
+              </p>
               <input
                 type="link"
                 className="link-input"
@@ -241,7 +273,10 @@ function Form({ formTitle, isARequest }) {
       <div className="form-section">
         <label>
           {isARequest ? 'Describe your request' : 'Describe your resource'}
-          <p className="field-helper-text">Provide detailed information to help others understand your needs (max 1500 characters)</p>
+          <p className="field-helper-text">
+            Provide detailed information to help others understand your needs
+            (max 1500 characters)
+          </p>
           <textarea
             className="description-input"
             onInput={handleDescriptionInput}
@@ -257,14 +292,14 @@ function Form({ formTitle, isARequest }) {
       <div className="form-section">
         <label>
           {' '}
-          {isARequest 
-            ? 'Provide your email to get updates on your request' 
+          {isARequest
+            ? 'Provide your email to get updates on your request'
             : 'Provide your email to get updates on your resource'}
           <input
             type="email"
             placeholder="Enter your email address"
             value={email}
-            onChange={(event) => setEmail(event.target.value)}
+            onChange={event => setEmail(event.target.value)}
           ></input>
         </label>
       </div>
