@@ -12,17 +12,31 @@ const HomePage = () => {
   const [requests, setRequests] = useState([]);
 
   useEffect(() => {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 1000); // 5 seconds timeout
+
     fetch('https://lessonlinksbackend.onrender.com/request', {
       method: 'GET',
+      signal: controller.signal,
     })
       .then(response => response.json())
-      .then(data => setRequests(data))
-      .catch(error => console.error('Error fetching requests:', error));
+      .then(data => {
+        if (data.length === 0) {
+          setRequests(fakeRequests);
+          console.log('No requests found, using fake data instead:');
+        } else setRequests(data);
+      })
+      .catch(error => {
+        if (error.name === 'AbortError') {
+          console.error('Fetch request timed out');
+          setRequests(fakeRequests);
+        } else {
+          console.error('Error fetching requests:', error);
+          setRequests(fakeRequests);
+        }
+      })
+      .finally(() => clearTimeout(timeoutId));
   }, []);
-
-  if (requests.length === 0) {
-    setRequests(fakeRequests);
-  }
 
   useEffect(() => {
     const slider = sliderRef.current;
@@ -158,7 +172,6 @@ const HomePage = () => {
               </div>
 
               <div ref={sliderRef} className="request-cards">
-                {/* No dummy card - start with the first real card */}
                 {requests.map(request => (
                   <div key={request.id} className="request-card">
                     <div className="request-card-header">
@@ -167,13 +180,14 @@ const HomePage = () => {
                     <div className="request-card-body">
                       <h3>{request.title}</h3>
                       <div className="request-meta">
-                        <span>
-                          <i className="fas fa-user"></i> Requested by{' '}
+                        {/* <span>
+                          <i className="fas fa-user"></i>
+                          Requested by{' '}
                           {request.requester}
-                        </span>
-                        <span>
+                        </span>  We don't have this data stored anywhere. We also don't have times I don't think. */}
+                        {/* <span>
                           <i className="fas fa-clock"></i> {request.timeAgo}
-                        </span>
+                        </span> */}
                       </div>
                       <p className="request-description">
                         {request.description}
