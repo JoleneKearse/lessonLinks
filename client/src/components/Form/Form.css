@@ -539,55 +539,201 @@ label + .field-helper-text,
   flex-wrap: wrap;
   gap: 15px;
   margin-bottom: 5px;
-  padding-bottom: 12px; /* Add padding at bottom */
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Subtle separator line */
+  padding-top: 10px;
+  padding-bottom: 14px; /* Add padding at bottom */
+  align-items: center; /* Ensure all items center-align */
 }
 
-/* Remove border from last group */
-.grade-group:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
+.grade-group:not(:last-child) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Subtle separator line */
 }
 
 .grade-group h4 {
   width: 100%;
-  margin: 0 0 2px 0; /* Further reduced from 3px to 2px */
+  margin: 0;
   font-size: 0.95rem;
   color: var(--dark);
   font-weight: 600;
 }
 
 .grade-checkbox {
-  display: flex;
-  align-items: center;
-  font-weight: 400; /* Lighter text weight */
+  display: flex !important;
+  align-items: center !important;
   min-width: 80px;
+  font-size: 1rem;
+  margin: 3px 0;
+  line-height: 1 !important; /* Enforce consistent line height */
 }
 
-/* Add proper spacing between checkbox and text */
-.grade-checkbox input[type="checkbox"] {
-  margin-right: 4px; /* Space between checkbox and text */
-}
-
-/* More specific targeting for grade group items */
-.grades-fieldset .grade-group label {
-  font-weight: 400; /* Ensure the text is lighter */
-}
-
-/* Make checkboxes larger */
 .grade-checkbox input[type="checkbox"] {
   width: 18px;
   height: 18px;
-  margin-right: 5px; /* Maintain the space between checkbox and text */
+  margin: 0 6px 0 0 !important;
+  padding: 0;
+  cursor: pointer;
+  accent-color: var(--bright-bg);
+  flex-shrink: 0;
 }
 
-@media (max-width: 600px) {
-  .grades-fieldset {
-    padding: 15px;
+/* Remove any relative positioning which might be causing issues */
+.grade-checkbox input[type="checkbox"] + span {
+  font-weight: 500;
+  line-height: 1 !important; /* Enforce consistent line height */
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Adjust spacing for mobile screens */
+@media (max-width: 768px) {
+  .grade-group {
+    gap: 14px; /* Reduced gap for mobile */
   }
   
-  .grade-group {
-    gap: 10px;
-    padding-bottom: 10px;
+  .grade-checkbox {
+    min-width: 60px; /* Smaller minimum width for mobile */
   }
+  
+  /* Make checkboxes slightly smaller on mobile */
+  .grade-checkbox input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+  }
+  
+  /* Adjust checkbox text size on mobile */
+  .grade-checkbox {
+    font-size: 0.9rem;
+  }
+  
+  /* Ensure checkboxes wrap properly on small screens */
+  .grades-fieldset {
+    padding: 15px 10px;
+  }
+}
+
+/* Ensure consistent font-weight for all main form labels */
+.dropdown-header,
+form label:not([for]),
+.form-section > label:first-child,
+.dropdown-container .Dropdown label {
+  font-weight: 600 !important;
+  color: var(--dark);
+  font-size: 1rem;
+}
+
+/* Override Dropdown component's font-weight */
+.dropdown-container .label-on-top,
+.form-section label,
+.dropdown-header {
+  font-weight: 600 !important;
+  color: var(--dark);
+  font-size: 1rem;
+}
+
+/* Ensure the !important flag takes precedence over any other styles */
+form label.label-on-top,
+.dropdown-container label.label-on-top {
+  font-weight: 600 !important;
+}
+
+/* STANDARDIZED SPACING FOR ALL FORM ELEMENTS */
+
+/* Form sections consistent spacing */
+.form-section {
+  margin-bottom: 0; /* Remove any default margin */
+  width: 100%;
+}
+
+/* Consistent label to input field spacing */
+.form-section label,
+.dropdown-container label.label-on-top,
+.form-group label,
+.link-and-price label {
+  display: block;
+  margin-bottom: 0;
+  font-weight: 600 !important;
+}
+
+/* Standardized spacing between label text and helper text */
+.field-helper-text {
+  margin-top: 6px !important;
+  margin-bottom: 6px !important;
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+/* Standardized spacing between helper text and input field */
+.field-helper-text + input,
+.field-helper-text + textarea,
+.field-helper-text + .select-container,
+.field-helper-text + fieldset {
+  margin-top: 6px !important;
+}
+
+/* Standardized spacing between label and input when no helper text */
+label > input,
+label > textarea,
+label > .select-container,
+label > fieldset {
+  margin-top: 8px !important;
+}
+
+/* Reset dropdown container spacing */
+.dropdown-container {
+  display: flex;
+  flex-direction: column;
+  gap: 25px !important;
+  width: 100%;
+  margin: 0 !important;
+}
+
+/* Override Dropdown component's internal spacing */
+.label-on-top {
+  display: flex;
+  flex-direction: column;
+  gap: 8px !important; /* Standardized gap */
+}
+
+/* Keep form grid spacing consistent */
+form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px !important; /* Ensured consistent section spacing */
+  width: 100%;
+  margin-top: 50px;
+  background-color: var(--pure-white);
+  padding: 50px;
+  border-radius: 12px;
+  box-shadow: 0 10px 10px 5px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Fix spacing for description count */
+.description-input + div {
+  margin-top: 6px;
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+/* Fix spacing for error messages */
+.error {
+  margin-top: 6px !important;
+  font-size: 0.9rem;
+}
+
+/* Clean up any conflicting styles */
+.form-group p:not(.error),
+.field-helper-text {
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.6);
+  margin-top: 6px !important;
+  margin-bottom: 6px !important;
+  font-style: normal;
+}
+
+/* Remove additional spacing in nested containers */
+.form-section > div > label,
+.form-section > div > div {
+  margin-top: 0 !important;
 }

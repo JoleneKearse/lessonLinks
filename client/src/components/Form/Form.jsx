@@ -160,7 +160,7 @@ function Form({ formTitle, isARequest }) {
                     disabled={gradesDisabled && !gradesSelected.includes(option)}
                     onChange={handleCheckboxChange}
                   />
-                  {option}
+                  <span>{option}</span>
                 </label>
               ))}
             </div>
@@ -175,7 +175,7 @@ function Form({ formTitle, isARequest }) {
                     disabled={gradesDisabled && !gradesSelected.includes(option)}
                     onChange={handleCheckboxChange}
                   />
-                  {option}
+                  <span>{option}</span>
                 </label>
               ))}
             </div>
@@ -190,7 +190,7 @@ function Form({ formTitle, isARequest }) {
                     disabled={gradesDisabled && !gradesSelected.includes(option)}
                     onChange={handleCheckboxChange}
                   />
-                  {option}
+                  <span>{option}</span>
                 </label>
               ))}
             </div>
@@ -205,7 +205,7 @@ function Form({ formTitle, isARequest }) {
                     disabled={gradesDisabled && !gradesSelected.includes(option)}
                     onChange={handleCheckboxChange}
                   />
-                  {option}
+                  <span>{option}</span>
                 </label>
               ))}
             </div>
