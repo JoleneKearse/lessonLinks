@@ -1,44 +1,139 @@
 /* Browse Resources page specific styles */
+
+.browse-resources-page h1 {
+  text-align: center;
+  margin: 30px 0 60px 0;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--dark);
+  line-height: 1.2;
+} 
+
 .browse-resources-page {
   padding-top: 120px; /* Space for the fixed Navigation component */
 }
 
 .resource-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 25px;
+  grid-template-columns: 1fr;
+  gap: 50px;
   margin-top: 30px;
 }
 
 .product-card {
   background-color: var(--pure-white);
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  transition: transform 0.3s ease;
+  border-radius: 12px;
+  box-shadow: 0 10px 10px 5px rgba(0, 0, 0, 0.25);
+  padding: 50px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  position: relative; /* Added to position the price */
 }
 
 .product-card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 15px 15px 8px rgba(0, 0, 0, 0.3);
 }
 
 .product-card h2 {
   margin-bottom: 10px;
   color: var(--bright-bg);
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
-.product-details {
+.product-description {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: var(--dark-text);
+  margin-bottom: 0;
+}
+
+.top-container {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.pill-container {
+  display: flex;
+  gap: 15px;
+}
+
+.pill-container .metadata-item {
+  border-radius: 999px; /* Fully rounded corners for pill shape */
+  padding: 8px 20px; /* Slightly increased horizontal padding */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Subject pill - first child */
+.pill-container .metadata-item:first-child {
+  background-color: transparent;
+  border: 2px solid var(--highlight);
+}
+
+.pill-container .metadata-item:first-child .metadata-value {
+  color: var(--highlight);
+}
+
+/* Grade pill - second child */
+.pill-container .metadata-item:nth-child(2) {
+  background-color: transparent;
+  border: 2px solid var(--bright-bg);
+}
+
+.pill-container .metadata-item:nth-child(2) .metadata-value {
+  color: var(--bright-bg);
+}
+
+.metadata-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Changed from 4 to 2 columns */
   gap: 10px;
   margin: 15px 0;
 }
 
-.product-details span {
+.metadata-item {
   background-color: var(--gray-bg);
-  padding: 5px 10px;
   border-radius: 4px;
-  font-size: 0.9rem;
+  padding: 8px 12px;
+}
+
+.metadata-label {
+  font-weight: 500;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.metadata-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* New container for format and more info link */
+.format-info-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 15px;
+}
+
+/* More info link styling */
+.more-info-link {
+  color: var(--bright-bg);
+  font-weight: 500;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.more-info-link:hover {
+  text-decoration: underline;
 }
 
 .product-card .btn {
@@ -55,4 +150,16 @@
 
 .product-card .btn:hover {
   background-color: var(--highlight);
-} 
+}
+
+/* Update price styling - no absolute positioning */
+.price {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--bright-bg);
+}
+
+/* Add margin to the last card */
+.resource-list .product-card:last-child {
+  margin-bottom: 60px;
+}

@@ -1,6 +1,7 @@
 import Navigation from '../../components/Navigation/Navigation';
 import './BrowseResourcesPage.css';
 import products from '../../products.json';
+import Footer from '../../components/Footer/Footer';
 import { formatGrades } from '../../utilities.js';
 
 function BrowseResourcesPage() {
@@ -16,22 +17,31 @@ function BrowseResourcesPage() {
         <div className="resource-list">
           {products.map(product => (
             <div key={product.id} className="product-card">
-              <h2>{product.title}</h2>
-              <p>{product.description}</p>
-              <div className="product-details">
-                <span className="price">{product.price}</span>
-                <span className="grade">{formatGrades(product.grade)}</span>
-                <span className="subject">{product.subject}</span>
-                <span className="format">{product.format}</span>
-                <span className="resource-type">{product.resourceType}</span>
+              <div className="top-container">
+                <div className="pill-container">
+                  <div className="metadata-item">
+                    <span className="metadata-value">{product.subject}</span>
+                  </div>
+                  <div className="metadata-item">
+                    <span className="metadata-value">
+                      {formatGrades(product.grade)}
+                    </span>
+                  </div>
+                </div>
+                <div className="price">${product.price}</div>
               </div>
-              <a href={product.link} className="btn">
-                See More
-              </a>
+              
+              <h2>{product.title}</h2>
+              <p className="product-description">{product.description}</p>
+              
+              <div className="format-info-container">
+                <a href={product.link} className="more-info-link">More info &gt;</a>
+              </div>
             </div>
           ))}
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
