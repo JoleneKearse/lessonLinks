@@ -1,6 +1,7 @@
 import Navigation from '../../components/Navigation/Navigation';
 import './BrowseResourcesPage.css';
 import products from '../../products.json';
+import { formatGrades } from '../../utilities.js';
 
 function BrowseResourcesPage() {
   // Assuming products is imported from elsewhere or will be fetched
@@ -19,7 +20,7 @@ function BrowseResourcesPage() {
               <p>{product.description}</p>
               <div className="product-details">
                 <span className="price">{product.price}</span>
-                <span className="grade">{product.grade}</span>
+                <span className="grade">{formatGrades(product.grade)}</span>
                 <span className="subject">{product.subject}</span>
                 <span className="format">{product.format}</span>
                 <span className="resource-type">{product.resourceType}</span>

@@ -31,7 +31,7 @@ function Form({ formTitle, isARequest }) {
     } else {
       setDescription(input.substring(0, 1500));
     }
-  }
+  };
 
   function handleCheckboxChange(event) {
     if (event.target.checked && gradesSelected.length < 4) {
@@ -47,8 +47,8 @@ function Form({ formTitle, isARequest }) {
         gradesSelected.filter(grade => grade !== event.target.value)
       );
       setGradesDisabled(false);
-    }
-  }
+    } 
+  };
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -72,7 +72,7 @@ function Form({ formTitle, isARequest }) {
       const newRequest = {
         title: title,
         subject: subjectSelected,
-        grades: gradesSelected,
+        grades: gradesSelected,                     // String
         resourceType: resourceTypeSelected,
         format: formatSelected,
         description: description,
@@ -84,7 +84,7 @@ function Form({ formTitle, isARequest }) {
       const newResource = {
         title: title,
         subject: subjectSelected,
-        grades: gradesSelected,
+        grades: gradesSelected,                    // Array of strings
         resourceType: resourceTypeSelected,
         format: formatSelected,
         description: description,
@@ -95,7 +95,7 @@ function Form({ formTitle, isARequest }) {
       console.log(newResource);
       console.log(JSON.stringify(newResource));
     }
-  }
+  };
 
   return (
     <form>
@@ -193,23 +193,7 @@ function Form({ formTitle, isARequest }) {
                   {option}
                 </label>
               ))}
-            </div>
-            
-            <div className="grade-group">
-              <h4>College</h4>
-              {grades.filter(g => ['Undergraduate'].includes(g)).map(option => (
-                <label key={option} className="grade-checkbox">
-                  <input
-                    type="checkbox"
-                    value={option}
-                    disabled={gradesDisabled && !gradesSelected.includes(option)}
-                    onChange={handleCheckboxChange}
-                  />
-                  {option}
-                </label>
-              ))}
-            </div>
-            
+            </div>     
             {gradesStatus == 'error' && (
               <p className="error bottom-right">This field is required.</p>
             )}

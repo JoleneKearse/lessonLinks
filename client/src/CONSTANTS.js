@@ -10,8 +10,7 @@ export const grades = [
   '9th',
   '10th',
   '11th',
-  '12th',
-  'Undergraduate',
+  '12th'
 ];
 export const formats = ['google doc', 'powerpoint', 'pdf', 'excel', 'word'];
 export const resourceTypes = [

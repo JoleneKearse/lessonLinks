@@ -18,6 +18,7 @@
 - For Requests since there will only be 1 grade (A string not an array) we need to change our logic in the case that isARequest=true OR convert the array to a single string before passing it to the the backend in that case.
 - Use endpoint to send json to backend on submission of form
 - Use endpoint to pull resource json from backend
+- if isARequest make sure only one grade level is checked. 
 
 Minor CSS stuff
 
