@@ -143,7 +143,6 @@ function Form({ formTitle, isARequest }) {
             isSubmitted={isSubmitted}
           />
         </div>
-<<<<<<< HEAD
       </div>
 
       <div className="form-section">
@@ -194,23 +193,7 @@ function Form({ formTitle, isARequest }) {
                   {option}
                 </label>
               ))}
-            </div>
-            
-            <div className="grade-group">
-              <h4>College</h4>
-              {grades.filter(g => ['Undergraduate'].includes(g)).map(option => (
-                <label key={option} className="grade-checkbox">
-                  <input
-                    type="checkbox"
-                    value={option}
-                    disabled={gradesDisabled && !gradesSelected.includes(option)}
-                    onChange={handleCheckboxChange}
-                  />
-                  {option}
-                </label>
-              ))}
-            </div>
-            
+            </div>     
             {gradesStatus == 'error' && (
               <p className="error bottom-right">This field is required.</p>
             )}
@@ -221,30 +204,6 @@ function Form({ formTitle, isARequest }) {
       {!isARequest && (
         <div className="form-section">
           <div className="link-and-price">
-=======
-      </label>
-      <fieldset data-status={gradesStatus}>
-        <legend>Select up to 4 Grade Levels</legend>
-        {grades.map(option => (
-          <label key={option}>
-            <input
-              key={option}
-              type="checkbox"
-              label={option}
-              value={option}
-              disabled={gradesDisabled && !gradesSelected.includes(option)}
-              onChange={event => handleCheckboxChange(event)} />
-            {option}
-          </label>
-        ))}
-        {gradesStatus == 'error' && (
-          <p className="error bottom-right">This field is required.</p>
-        )}
-      </fieldset>
-      <div className="link-and-price">
-        {!isARequest && (
-          <>
->>>>>>> 0e97817 (Fixed formatting issue with grade range. Deleted "Undergrad" as grade option)
             <label>
               {' '}
               Link to resource
