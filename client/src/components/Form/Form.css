@@ -60,6 +60,8 @@ fieldset[data-status='error'] {
   position: absolute;
   bottom: 5px;
   right: 5px;
+  margin: 0;
+  padding: 0;
 }
 
 .description-input {
@@ -529,8 +531,9 @@ label + .field-helper-text,
 .grades-fieldset {
   display: flex;
   flex-direction: column;
-  gap: 15px; /* Space between groups */
+  gap: 15px;
   padding: 20px;
+  position: relative;
 }
 
 .grade-group {
@@ -538,14 +541,20 @@ label + .field-helper-text,
   flex-direction: row;
   flex-wrap: wrap;
   gap: 15px;
-  margin-bottom: 5px;
-  padding-top: 10px;
-  padding-bottom: 14px; /* Add padding at bottom */
-  align-items: center; /* Ensure all items center-align */
+  padding: 10px 0;
+  align-items: center;
+  box-sizing: border-box;
+  height: auto;
 }
 
 .grade-group:not(:last-child) {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Subtle separator line */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 0;
+}
+
+.grade-group:last-child {
+  padding-bottom: 10px;
+  margin-bottom: 0;
 }
 
 .grade-group h4 {
@@ -559,10 +568,12 @@ label + .field-helper-text,
 .grade-checkbox {
   display: flex !important;
   align-items: center !important;
-  min-width: 80px;
+  min-width: 70px;
   font-size: 1rem;
-  margin: 3px 0;
-  line-height: 1 !important; /* Enforce consistent line height */
+  margin: 0;
+  padding: 0;
+  line-height: 1.2 !important;
+  height: auto;
 }
 
 .grade-checkbox input[type="checkbox"] {
@@ -575,43 +586,37 @@ label + .field-helper-text,
   flex-shrink: 0;
 }
 
-/* Remove any relative positioning which might be causing issues */
 .grade-checkbox input[type="checkbox"] + span {
   font-weight: 500;
-  line-height: 1 !important; /* Enforce consistent line height */
+  line-height: 1 !important;
   margin: 0 !important;
   padding: 0 !important;
 }
 
-/* Adjust spacing for mobile screens */
 @media (max-width: 768px) {
   .grade-group {
-    gap: 14px; /* Reduced gap for mobile */
+    gap: 14px;
   }
   
   .grade-checkbox {
-    min-width: 60px; /* Smaller minimum width for mobile */
+    min-width: 60px;
   }
   
-  /* Make checkboxes slightly smaller on mobile */
   .grade-checkbox input[type="checkbox"] {
     width: 16px;
     height: 16px;
     margin-right: 4px;
   }
   
-  /* Adjust checkbox text size on mobile */
   .grade-checkbox {
     font-size: 0.9rem;
   }
   
-  /* Ensure checkboxes wrap properly on small screens */
   .grades-fieldset {
     padding: 15px 10px;
   }
 }
 
-/* Ensure consistent font-weight for all main form labels */
 .dropdown-header,
 form label:not([for]),
 .form-section > label:first-child,
@@ -621,7 +626,6 @@ form label:not([for]),
   font-size: 1rem;
 }
 
-/* Override Dropdown component's font-weight */
 .dropdown-container .label-on-top,
 .form-section label,
 .dropdown-header {
@@ -630,31 +634,23 @@ form label:not([for]),
   font-size: 1rem;
 }
 
-/* Ensure the !important flag takes precedence over any other styles */
 form label.label-on-top,
 .dropdown-container label.label-on-top {
   font-weight: 600 !important;
 }
 
-/* STANDARDIZED SPACING FOR ALL FORM ELEMENTS */
-
-/* Form sections consistent spacing */
 .form-section {
-  margin-bottom: 0; /* Remove any default margin */
+  margin-bottom: 0;
   width: 100%;
 }
 
-/* Consistent label to input field spacing */
-.form-section label,
-.dropdown-container label.label-on-top,
-.form-group label,
+form > label,
 .link-and-price label {
   display: block;
   margin-bottom: 0;
   font-weight: 600 !important;
 }
 
-/* Standardized spacing between label text and helper text */
 .field-helper-text {
   margin-top: 6px !important;
   margin-bottom: 6px !important;
@@ -662,7 +658,6 @@ form label.label-on-top,
   color: rgba(0, 0, 0, 0.6);
 }
 
-/* Standardized spacing between helper text and input field */
 .field-helper-text + input,
 .field-helper-text + textarea,
 .field-helper-text + .select-container,
@@ -670,7 +665,6 @@ form label.label-on-top,
   margin-top: 6px !important;
 }
 
-/* Standardized spacing between label and input when no helper text */
 label > input,
 label > textarea,
 label > .select-container,
@@ -678,7 +672,6 @@ label > fieldset {
   margin-top: 8px !important;
 }
 
-/* Reset dropdown container spacing */
 .dropdown-container {
   display: flex;
   flex-direction: column;
@@ -687,18 +680,16 @@ label > fieldset {
   margin: 0 !important;
 }
 
-/* Override Dropdown component's internal spacing */
 .label-on-top {
   display: flex;
   flex-direction: column;
-  gap: 8px !important; /* Standardized gap */
+  gap: 8px !important;
 }
 
-/* Keep form grid spacing consistent */
 form {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 40px !important; /* Ensured consistent section spacing */
+  gap: 40px !important;
   width: 100%;
   margin-top: 50px;
   background-color: var(--pure-white);
@@ -708,20 +699,17 @@ form {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Fix spacing for description count */
 .description-input + div {
   margin-top: 6px;
   font-size: 0.9rem;
   color: rgba(0, 0, 0, 0.6);
 }
 
-/* Fix spacing for error messages */
 .error {
   margin-top: 6px !important;
   font-size: 0.9rem;
 }
 
-/* Clean up any conflicting styles */
 .form-group p:not(.error),
 .field-helper-text {
   font-weight: 400;
@@ -732,7 +720,6 @@ form {
   font-style: normal;
 }
 
-/* Remove additional spacing in nested containers */
 .form-section > div > label,
 .form-section > div > div {
   margin-top: 0 !important;

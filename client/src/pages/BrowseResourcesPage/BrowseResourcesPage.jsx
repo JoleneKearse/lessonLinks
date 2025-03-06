@@ -24,7 +24,7 @@ function BrowseResourcesPage() {
                   </div>
                   <div className="metadata-item">
                     <span className="metadata-value">
-                      {formatGrades(product.grade)}
+                      {formatGrades(product.grade)} grade
                     </span>
                   </div>
                 </div>
