@@ -49,6 +49,7 @@
   margin-bottom: 20px;
   line-height: 1.2;
   word-wrap: break-word;
+  margin-top: 40px;
 }
 
 .hero p {
@@ -605,6 +606,7 @@
   
   .hero h1 {
     font-size: 3.8rem;
+    margin-top: 30px;
   }
   
   .hero p {
@@ -669,6 +671,7 @@
   
   .hero h1 {
     font-size: 3rem;
+    margin-top: 20px;
   }
   
   .hero p {
