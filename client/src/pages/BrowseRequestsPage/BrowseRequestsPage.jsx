@@ -3,6 +3,7 @@ import './BrowseRequestsPage.css';
 import products from '../../products.json';
 
 function BrowseRequestsPage() {
+
   return (
     <div className="browse-requests-page">
       <Navigation />

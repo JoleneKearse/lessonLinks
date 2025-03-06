@@ -31,7 +31,7 @@ function Form({ formTitle, isARequest }) {
     } else {
       setDescription(input.substring(0, 1500));
     }
-  }
+  };
 
   function handleCheckboxChange(event) {
     if (event.target.checked && gradesSelected.length < 4) {
@@ -47,8 +47,8 @@ function Form({ formTitle, isARequest }) {
         gradesSelected.filter(grade => grade !== event.target.value)
       );
       setGradesDisabled(false);
-    }
-  }
+    } 
+  };
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -72,7 +72,7 @@ function Form({ formTitle, isARequest }) {
       const newRequest = {
         title: title,
         subject: subjectSelected,
-        grades: gradesSelected,
+        grades: gradesSelected,                     // String
         resourceType: resourceTypeSelected,
         format: formatSelected,
         description: description,
@@ -84,7 +84,7 @@ function Form({ formTitle, isARequest }) {
       const newResource = {
         title: title,
         subject: subjectSelected,
-        grades: gradesSelected,
+        grades: gradesSelected,                    // Array of strings
         resourceType: resourceTypeSelected,
         format: formatSelected,
         description: description,
@@ -95,7 +95,7 @@ function Form({ formTitle, isARequest }) {
       console.log(newResource);
       console.log(JSON.stringify(newResource));
     }
-  }
+  };
 
   return (
     <form>
@@ -143,6 +143,7 @@ function Form({ formTitle, isARequest }) {
             isSubmitted={isSubmitted}
           />
         </div>
+<<<<<<< HEAD
       </div>
 
       <div className="form-section">
@@ -220,6 +221,30 @@ function Form({ formTitle, isARequest }) {
       {!isARequest && (
         <div className="form-section">
           <div className="link-and-price">
+=======
+      </label>
+      <fieldset data-status={gradesStatus}>
+        <legend>Select up to 4 Grade Levels</legend>
+        {grades.map(option => (
+          <label key={option}>
+            <input
+              key={option}
+              type="checkbox"
+              label={option}
+              value={option}
+              disabled={gradesDisabled && !gradesSelected.includes(option)}
+              onChange={event => handleCheckboxChange(event)} />
+            {option}
+          </label>
+        ))}
+        {gradesStatus == 'error' && (
+          <p className="error bottom-right">This field is required.</p>
+        )}
+      </fieldset>
+      <div className="link-and-price">
+        {!isARequest && (
+          <>
+>>>>>>> 0e97817 (Fixed formatting issue with grade range. Deleted "Undergrad" as grade option)
             <label>
               {' '}
               Link to resource
