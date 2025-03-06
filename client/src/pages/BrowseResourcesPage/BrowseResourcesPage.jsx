@@ -1,10 +1,23 @@
 import Navigation from '../../components/Navigation/Navigation';
 import './BrowseResourcesPage.css';
-import products from '../../products.json';
+import { useState, useEffect } from 'react';
+import products from '../../products.json'; // Our dummy data in case the fetch fails or the resource list is empty
 
 function BrowseResourcesPage() {
-  // Assuming products is imported from elsewhere or will be fetched
-  // const products = []; // Replace with actual data or import
+  const [productsData, setProductsData] = useState([]);
+
+  useEffect(() => {
+    fetch('https://lessonlinksbackend.onrender.com/resource', {
+      method: 'GET',
+    })
+      .then(response => response.json())
+      .then(data => setProductsData(data))
+      .catch(error => console.error('Error fetching resources:', error));
+  }, []);
+
+  if (productsData.length === 0) {
+    setProductsData(products);
+  }
 
   return (
     <div className="browse-resources-page">

@@ -1,13 +1,42 @@
-import React, { useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Navigation from '../../components/Navigation/Navigation';
 import './HomePage.css';
 import Footer from '../../components/Footer/Footer';
+import fakeRequests from '../../fakeRequests.json';
 
 const HomePage = () => {
   // Create refs for the slider elements
   const sliderRef = useRef(null);
   const prevArrowRef = useRef(null);
   const nextArrowRef = useRef(null);
+  const [requests, setRequests] = useState([]);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 1000); // 5 seconds timeout
+
+    fetch('https://lessonlinksbackend.onrender.com/request', {
+      method: 'GET',
+      signal: controller.signal,
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.length === 0) {
+          setRequests(fakeRequests);
+          console.log('No requests found, using fake data instead:');
+        } else setRequests(data);
+      })
+      .catch(error => {
+        if (error.name === 'AbortError') {
+          console.error('Fetch request timed out');
+          setRequests(fakeRequests);
+        } else {
+          console.error('Error fetching requests:', error);
+          setRequests(fakeRequests);
+        }
+      })
+      .finally(() => clearTimeout(timeoutId));
+  }, []);
 
   useEffect(() => {
     const slider = sliderRef.current;
@@ -143,115 +172,35 @@ const HomePage = () => {
               </div>
 
               <div ref={sliderRef} className="request-cards">
-                {/* No dummy card - start with the first real card */}
-                <div className="request-card">
-                  <div className="request-card-header">Science - Grade 5</div>
-                  <div className="request-card-body">
-                    <h3>Ecosystems Interactive Notebook</h3>
-                    <div className="request-meta">
-                      <span>
-                        <i className="fas fa-user"></i> Requested by Sarah T.
-                      </span>
-                      <span>
-                        <i className="fas fa-clock"></i> 7 mins ago
-                      </span>
+                {requests.map(request => (
+                  <div key={request.id} className="request-card">
+                    <div className="request-card-header">
+                      {request.subject} - {request.grade}
                     </div>
-                    <p className="request-description">
-                      Looking for an interactive notebook with hands-on
-                      activities for a 2-week ecosystems unit. Need food web
-                      activities and habitat explorations that align with NGSS
-                      standards.
-                    </p>
-                    <div className="request-cta">
-                      <span className="request-price">$10-15</span>
-                      <a href="/submit" className="btn btn-primary">
-                        Create This Resource
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="request-card">
-                  <div className="request-card-header">Math - Grade 3</div>
-                  <div className="request-card-body">
-                    <h3>Fractions Assessment Bundle</h3>
-                    <div className="request-meta">
-                      <span>
-                        <i className="fas fa-user"></i> Requested by Michael D.
-                      </span>
-                      <span>
-                        <i className="fas fa-clock"></i> 12 mins ago
-                      </span>
-                    </div>
-                    <p className="request-description">
-                      Need pre-assessment, formative assessments, and summative
-                      assessment for fractions unit. Should include visual
-                      models and word problems. Digital and printable versions
-                      required.
-                    </p>
-                    <div className="request-cta">
-                      <span className="request-price">$5-10</span>
-                      <a href="/submit" className="btn btn-primary">
-                        Create This Resource
-                      </a>
+                    <div className="request-card-body">
+                      <h3>{request.title}</h3>
+                      <div className="request-meta">
+                        {/* <span>
+                          <i className="fas fa-user"></i>
+                          Requested by{' '}
+                          {request.requester}
+                        </span>  We don't have this data stored anywhere. We also don't have times I don't think. */}
+                        {/* <span>
+                          <i className="fas fa-clock"></i> {request.timeAgo}
+                        </span> */}
+                      </div>
+                      <p className="request-description">
+                        {request.description}
+                      </p>
+                      <div className="request-cta">
+                        <span className="request-price">{request.price}</span>
+                        <a href="/submit" className="btn btn-primary">
+                          Create This Resource
+                        </a>
+                      </div>
                     </div>
                   </div>
-                </div>
-
-                <div className="request-card">
-                  <div className="request-card-header">ELA - High School</div>
-                  <div className="request-card-body">
-                    <h3>Modern Poetry Analysis Unit</h3>
-                    <div className="request-meta">
-                      <span>
-                        <i className="fas fa-user"></i> Requested by Rebecca L.
-                      </span>
-                      <span>
-                        <i className="fas fa-clock"></i> 41 mins ago
-                      </span>
-                    </div>
-                    <p className="request-description">
-                      Seeking a 3-week unit on modern poetry analysis for grades
-                      11-12. Should include diverse poets, analysis frameworks,
-                      writing prompts, and final creative project options.
-                    </p>
-                    <div className="request-cta">
-                      <span className="request-price">$10-15</span>
-                      <a href="/submit" className="btn btn-primary">
-                        Create This Resource
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="request-card">
-                  <div className="request-card-header">
-                    Social Studies - Middle School
-                  </div>
-                  <div className="request-card-body">
-                    <h3>Ancient Civilizations Digital Escape Room</h3>
-                    <div className="request-meta">
-                      <span>
-                        <i className="fas fa-user"></i> Requested by Alex K.
-                      </span>
-                      <span>
-                        <i className="fas fa-clock"></i> 1 hr ago
-                      </span>
-                    </div>
-                    <p className="request-description">
-                      A digital escape room focused on ancient Egypt, Greece,
-                      and Rome with interactive puzzles that teach key concepts
-                      about each civilization, designed to work in Google Slides
-                      and including a teacher guide.
-                    </p>
-                    <div className="request-cta">
-                      <span className="request-price">$15-20</span>
-                      <a href="/submit" className="btn btn-primary">
-                        Create This Resource
-                      </a>
-                    </div>
-                  </div>
-                </div>
+                ))}
 
                 <a href="/browse-requests" className="see-all-card">
                   <i className="fas fa-arrow-right"></i>
@@ -317,72 +266,106 @@ const HomePage = () => {
           <div className="container">
             <div className="section-title">
               <h2>Everyone Wins with LessonLinks</h2>
-              <p>Our request feature eliminates guesswork. Teachers get exactly what they need, and creators build resources that are guaranteed to deliver value.</p>
+              <p>
+                Our request feature eliminates guesswork. Teachers get exactly
+                what they need, and creators build resources that are guaranteed
+                to deliver value.
+              </p>
             </div>
 
             <div className="benefits-container">
               <div className="benefits-card teachers-card">
                 <div className="card-header">
-                  <h3><i className="fas fa-chalkboard-teacher"></i>Benefits for Teachers</h3>
-                  <p>Get exactly what you need for your classroom without compromise</p>
+                  <h3>
+                    <i className="fas fa-chalkboard-teacher"></i>Benefits for
+                    Teachers
+                  </h3>
+                  <p>
+                    Get exactly what you need for your classroom without
+                    compromise
+                  </p>
                 </div>
                 <ul className="benefits-list">
                   <li className="benefit-item">
                     <div className="check-icon">
                       <i className="fas fa-check"></i>
                     </div>
-                    <div className="benefit-text">Get resources perfectly tailored to your curriculum and students' needs</div>
+                    <div className="benefit-text">
+                      Get resources perfectly tailored to your curriculum and
+                      students' needs
+                    </div>
                   </li>
                   <li className="benefit-item">
                     <div className="check-icon">
                       <i className="fas fa-check"></i>
                     </div>
-                    <div className="benefit-text">Save time by not having to modify generic resources</div>
+                    <div className="benefit-text">
+                      Save time by not having to modify generic resources
+                    </div>
                   </li>
                   <li className="benefit-item">
                     <div className="check-icon">
                       <i className="fas fa-check"></i>
                     </div>
-                    <div className="benefit-text">Pay only for what you need, rather than buying packages with unused content</div>
+                    <div className="benefit-text">
+                      Pay only for what you need, rather than buying packages
+                      with unused content
+                    </div>
                   </li>
                   <li className="benefit-item">
                     <div className="check-icon">
                       <i className="fas fa-check"></i>
                     </div>
-                    <div className="benefit-text">Build relationships with creators who understand your teaching style</div>
+                    <div className="benefit-text">
+                      Build relationships with creators who understand your
+                      teaching style
+                    </div>
                   </li>
                 </ul>
               </div>
 
               <div className="benefits-card creators-card">
                 <div className="card-header">
-                  <h3><i className="fas fa-pencil-alt"></i>Benefits for Creators</h3>
-                  <p>Turn your teaching expertise into a flexible, rewarding business</p>
+                  <h3>
+                    <i className="fas fa-pencil-alt"></i>Benefits for Creators
+                  </h3>
+                  <p>
+                    Turn your teaching expertise into a flexible, rewarding
+                    business
+                  </p>
                 </div>
                 <ul className="benefits-list">
                   <li className="benefit-item">
                     <div className="check-icon">
                       <i className="fas fa-check"></i>
                     </div>
-                    <div className="benefit-text">Create resources you know teachers actually want and need</div>
+                    <div className="benefit-text">
+                      Create resources you know teachers actually want and need
+                    </div>
                   </li>
                   <li className="benefit-item">
                     <div className="check-icon">
                       <i className="fas fa-check"></i>
                     </div>
-                    <div className="benefit-text">Build a client base for repeat business and referrals</div>
+                    <div className="benefit-text">
+                      Build a client base for repeat business and referrals
+                    </div>
                   </li>
                   <li className="benefit-item">
                     <div className="check-icon">
                       <i className="fas fa-check"></i>
                     </div>
-                    <div className="benefit-text">Develop new skills by tackling diverse project requests</div>
+                    <div className="benefit-text">
+                      Develop new skills by tackling diverse project requests
+                    </div>
                   </li>
                   <li className="benefit-item">
                     <div className="check-icon">
                       <i className="fas fa-check"></i>
                     </div>
-                    <div className="benefit-text">Earn premium rates for custom work</div>
+                    <div className="benefit-text">
+                      Earn premium rates for custom work
+                    </div>
                   </li>
                 </ul>
               </div>
