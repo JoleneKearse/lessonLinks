@@ -1,0 +1,38 @@
+[
+  {
+    "title": "Ecosystems Interactive Notebook",
+    "description": "Looking for an interactive notebook with hands-on activities for a 2-week ecosystems unit. Need food web activities and habitat explorations that align with NGSS standards.",
+    "price": "$10-15",
+    "user": "Sarah T.",
+    "time": "7 mins ago",
+    "subject": "Science - Grade 5",
+    "id": "1"
+  },
+  {
+    "title": "Fractions Assessment Bundle",
+    "description": "Need pre-assessment, formative assessments, and summative assessment for fractions unit. Should include visual models and word problems. Digital and printable versions required.",
+    "price": "$5-10",
+    "user": "Michael D.",
+    "time": "12 mins ago",
+    "subject": "Math - Grade 3",
+    "id": "2"
+  },
+  {
+    "title": "Modern Poetry Analysis Unit",
+    "description": "Seeking a 3-week unit on modern poetry analysis for grades 11-12. Should include diverse poets, analysis frameworks, writing prompts, and final creative project options.",
+    "price": "$10-15",
+    "user": "Rebecca L.",
+    "time": "41 mins ago",
+    "subject": "ELA - High School",
+    "id": "3"
+  },
+  {
+    "title": "Ancient Civilizations Digital Escape Room",
+    "description": "A digital escape room focused on ancient Egypt, Greece, and Rome with interactive puzzles that teach key concepts about each civilization, designed to work in Google Slides and including a teacher guide.",
+    "price": "$15-20",
+    "user": "Alex K.",
+    "time": "1 hr ago",
+    "subject": "Social Studies - Middle School",
+    "id": "4"
+  }
+]

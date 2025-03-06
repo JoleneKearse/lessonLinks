@@ -1,6 +1,6 @@
 import Navigation from '../../components/Navigation/Navigation';
 import './BrowseRequestsPage.css';
-import products from '../../products.json';
+import fakeRequests from '../../fakeRequests.json'; // Our dummy data in case the fetch fails or the request list is empty
 import { useState, useEffect } from 'react';
 
 function BrowseRequestsPage() {
@@ -14,6 +14,10 @@ function BrowseRequestsPage() {
       .then(data => setRequests(data))
       .catch(error => console.error('Error fetching requests:', error));
   }, []);
+
+  if (requests.length === 0) {
+    setRequests(fakeRequests);
+  }
 
   return (
     <div className="browse-requests-page">
