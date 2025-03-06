@@ -21,8 +21,9 @@
 
 Minor CSS stuff
 
-- Make cursor over nav links and all links/buttons be pointer both on hover and on focus
+- Make cursor over nav links and all links/buttons be pointer both on hover and on focus ✅
 - Make borders for all inputs on form consistently sized
+- Format price input as money in the form
 
 Maybe Later????
 
