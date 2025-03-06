@@ -40,13 +40,13 @@
 .product-card h2 {
   margin-bottom: 10px;
   color: var(--bright-bg);
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-weight: 700;
   line-height: 1.2;
 }
 
 .product-description {
-  font-size: 1.2rem;
+  font-size: 1rem;
   line-height: 1.6;
   color: var(--dark-text);
   margin-bottom: 0;
@@ -112,7 +112,7 @@
 }
 
 .metadata-value {
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   font-weight: 600;
 }
 
@@ -129,7 +129,7 @@
   color: var(--bright-bg);
   font-weight: 500;
   text-decoration: none;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .more-info-link:hover {
@@ -154,7 +154,7 @@
 
 /* Update price styling - no absolute positioning */
 .price {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 700;
   color: var(--bright-bg);
 }
