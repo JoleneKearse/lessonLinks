@@ -560,15 +560,25 @@ label + .field-helper-text,
 .grade-checkbox {
   display: flex;
   align-items: center;
-  gap: 4px;
-  font-weight: normal;
+  font-weight: 400; /* Lighter text weight */
   min-width: 80px;
 }
 
-/* Make the checkbox label explicitly not bold */
-.grade-checkbox span,
-.grade-checkbox {
-  font-weight: 400; /* Normal weight */
+/* Add proper spacing between checkbox and text */
+.grade-checkbox input[type="checkbox"] {
+  margin-right: 4px; /* Space between checkbox and text */
+}
+
+/* More specific targeting for grade group items */
+.grades-fieldset .grade-group label {
+  font-weight: 400; /* Ensure the text is lighter */
+}
+
+/* Make checkboxes larger */
+.grade-checkbox input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-right: 5px; /* Maintain the space between checkbox and text */
 }
 
 @media (max-width: 600px) {
